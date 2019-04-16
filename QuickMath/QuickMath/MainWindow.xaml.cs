@@ -23,6 +23,22 @@ namespace QuickMath
         public MainWindow()
         {
             InitializeComponent();
+            App.LanguageChanged += App_LanguageChanged;
+        }
+
+        private void App_LanguageChanged(object sender, EventArgs e)
+        {
+        }
+        private bool covered = false;
+        private void Link_ChangeColor(object sender, MouseEventArgs e) => (sender as Label).Foreground = !(covered = !covered) ? Brushes.Black : Brushes.LightCoral;
+
+        private void Link_Click(object sender, MouseButtonEventArgs e)
+        {
+            MainGrid.Visibility = Visibility.Hidden;
+            Label current = sender as Label;
+            if (current.Tag.ToString() == "Math") MathGrid.Visibility = Visibility.Visible;
+            else MemoryGrid.Visibility = Visibility.Visible;
+
         }
     }
 }
