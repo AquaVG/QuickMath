@@ -283,6 +283,24 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        Margin="30,0" />
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Label x:Name="Math_Expression"
+                           FontSize="34"
+                           Content="0+0"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                    <TextBox x:Name="UAnswer_Math"
+                             VerticalAlignment="Center"
+                            Grid.Row="1"
+                             Width="150"
+                             FontSize="32"
+                             HorizontalAlignment="Center"
+                             VerticalContentAlignment="Center" />
+                </Grid>
             </Grid>
         </Grid>
         <Grid Visibility="Hidden"

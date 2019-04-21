@@ -29,8 +29,12 @@ namespace QuickMath
             math_timer.Tick += Math_timer_Tick;
             memory_timer.Tick += Memory_timer_Tick;
             math_timer.Interval = memory_timer.Interval = 1000;
-            Button_Click(new object(), new RoutedEventArgs());
         }
+
+        private void MathTextB_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        } 
 
         private void Memory_timer_Tick(object sender, System.EventArgs e)
         {
@@ -39,7 +43,6 @@ namespace QuickMath
 
         private void Math_timer_Tick(object sender, System.EventArgs e)
         {
-            Math_Timer.Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";
 
             if (Seconds == 0 && Minutes >= 1)
             {
@@ -50,6 +53,7 @@ namespace QuickMath
                 (sender as System.Windows.Forms.Timer).Enabled = false; return;
             }
             Seconds--;
+            Math_Timer.Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";
 
         }
 
@@ -80,6 +84,7 @@ namespace QuickMath
             }
             SecondaryMathGrid.Visibility = Visibility.Hidden;
             MainMathGrid.Visibility = Visibility.Visible;
+            Math_Timer.Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";
             math_timer.Enabled = true;
         }
     }
