@@ -295,7 +295,8 @@
                            VerticalAlignment="Center" />
                     <TextBox x:Name="UAnswer_Math"
                              VerticalAlignment="Center"
-                            Grid.Row="1"
+                             KeyUp="MathTextB_KeyUp"
+                             Grid.Row="1"
                              Width="150"
                              FontSize="32"
                              HorizontalAlignment="Center"
