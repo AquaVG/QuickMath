@@ -272,7 +272,17 @@
             </Grid>
             <Grid Visibility="Visible"
                   x:Name="MainMathGrid">
-
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
+                <Label x:Name="Math_Timer"
+                       Content="00:00"
+                       FontFamily="Segoe UI"
+                       FontSize="30"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="30,0" />
             </Grid>
         </Grid>
         <Grid Visibility="Hidden"
