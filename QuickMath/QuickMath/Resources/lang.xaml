@@ -4,4 +4,15 @@
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
     <v:String x:Key="m_math">Math train</v:String>
     <v:String x:Key="m_memory">Memory train</v:String>
+    <v:String x:Key="math_add">Add</v:String>
+    <v:String x:Key="math_rem">Difference</v:String>
+    <v:String x:Key="math_mult">Multiply</v:String>
+    <v:String x:Key="math_divide">Division</v:String>
+
+    <v:String x:Key="desc_math_level">Your level:</v:String>
+    <v:String x:Key="desc_math_ops">Enable operations:</v:String>
+    <v:String x:Key="math_help">Choose operations to practice:</v:String>
+
+    <v:String x:Key="btn_begin">Start!</v:String>
+
 </ResourceDictionary>

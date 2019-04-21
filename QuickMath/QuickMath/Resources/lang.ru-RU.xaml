@@ -4,4 +4,14 @@
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
     <v:String x:Key="m_math">Математическая тренировка</v:String>
     <v:String x:Key="m_memory">Тренировка памяти</v:String>
+    <v:String x:Key="desc_math_level">Ваш уровень:</v:String>
+    <v:String x:Key="math_add">Сумма</v:String>
+    <v:String x:Key="math_rem">Вычитание</v:String>
+    <v:String x:Key="math_mult">Умножение</v:String>
+    <v:String x:Key="math_divide">Деление</v:String>
+    <v:String x:Key="desc_math_ops">Доступные операции:</v:String>
+    <v:String x:Key="math_help">Выбирите операции для тренировки:</v:String>
+
+    <v:String x:Key="btn_begin">Начать!</v:String>
+
 </ResourceDictionary>
