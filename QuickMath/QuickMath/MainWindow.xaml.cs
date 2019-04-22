@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,6 +18,8 @@ namespace QuickMath
         System.Windows.Forms.Timer math_timer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer memory_timer = new System.Windows.Forms.Timer();
 
+        MathSkillWorker mathWorker;
+
         short Seconds = 0, Minutes = 3;
         public MainWindow()
         {
@@ -33,8 +36,16 @@ namespace QuickMath
 
         private void MathTextB_KeyUp(object sender, KeyEventArgs e)
         {
-
-        } 
+            if (e.Key == Key.Enter)
+            {
+                if (int.TryParse(UAnswer_Math.Text, out int a))
+                {
+                    MathSkillWorker.CheckAnswer(Math_Expression.Content.ToString(), Convert.ToInt32(UAnswer_Math.Text));
+                    Math_Expression.Content = mathWorker.Expression;
+                    UAnswer_Math.Text = "";
+                }
+            }
+        }
 
         private void Memory_timer_Tick(object sender, System.EventArgs e)
         {
@@ -86,6 +97,8 @@ namespace QuickMath
             MainMathGrid.Visibility = Visibility.Visible;
             Math_Timer.Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";
             math_timer.Enabled = true;
+            mathWorker = new MathSkillWorker(ActiveOps);
+            Math_Expression.Content = mathWorker.Expression;
         }
     }
 }

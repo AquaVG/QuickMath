@@ -8,8 +8,7 @@
         Height="600"
         Width="510"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize"
-        Icon="C:\Users\Влад Головатюк\Desktop\Projects Visual Studio\QuickMath\QuickMath\QuickMath\bin\Debug\Resources\QuickMath.ico">
+        ResizeMode="CanMinimize">
     <Grid>
         <Grid x:Name="MainGrid"
               Visibility="Hidden">
