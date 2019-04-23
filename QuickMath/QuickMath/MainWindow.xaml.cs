@@ -62,6 +62,7 @@ namespace QuickMath
             if (Minutes == 0 && Seconds == 0)
             {
                 (sender as System.Windows.Forms.Timer).Enabled = false; return;
+                new InfoWindow();
             }
             Seconds--;
             Math_Timer.Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";

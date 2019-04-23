@@ -48,7 +48,11 @@
                    VerticalAlignment="Center"
                    FontSize="26"
                    HorizontalAlignment="Right"
-                   FontFamily="Microsoft YaHei"/>
+                   FontFamily="Microsoft YaHei" />
+            <Label x:Name="Wrong_Label"
+                   Content="0"
+                   Grid.Column="1" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Grid>
-    </Grid>
+        </Grid>
 </Window>
