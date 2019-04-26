@@ -11,7 +11,7 @@
         ResizeMode="CanMinimize">
     <Grid>
         <Grid x:Name="MainGrid"
-              Visibility="Hidden">
+              Visibility="Visible">
             <Grid.Resources>
                 <Style TargetType="Label">
                     <Setter Property="HorizontalAlignment"
@@ -43,7 +43,7 @@
                    Content="{DynamicResource m_memory}"
                    VerticalAlignment="Top" />
         </Grid>
-        <Grid Visibility="Visible"
+        <Grid Visibility="Hidden"
               x:Name="MathGrid">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -53,57 +53,6 @@
                   Visibility="Visible"
                   x:Name="SecondaryMathGrid">
                 <Grid.Resources>
-                    <Style x:Key="FocusVisual">
-                        <Setter Property="Control.Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <Rectangle Margin="2"
-                                               SnapsToDevicePixels="true"
-                                               Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-                                               StrokeThickness="1"
-                                               StrokeDashArray="1 2" />
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                    <SolidColorBrush x:Key="OptionMark.Static.Background"
-                                     Color="#FFFFFFFF" />
-                    <SolidColorBrush x:Key="OptionMark.Static.Border"
-                                     Color="#FF707070" />
-                    <Style x:Key="OptionMarkFocusVisual">
-                        <Setter Property="Control.Template">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <Rectangle Margin="14,0,0,0"
-                                               SnapsToDevicePixels="true"
-                                               Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
-                                               StrokeThickness="1"
-                                               StrokeDashArray="1 2" />
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-
-                    <SolidColorBrush x:Key="OptionMark.MouseOver.Background"
-                                     Color="#FFF3F9FF" />
-                    <SolidColorBrush x:Key="OptionMark.MouseOver.Border"
-                                     Color="#FF5593FF" />
-                    <SolidColorBrush x:Key="OptionMark.MouseOver.Glyph"
-                                     Color="#FF212121" />
-                    <SolidColorBrush x:Key="OptionMark.Disabled.Background"
-                                     Color="#FFE6E6E6" />
-                    <SolidColorBrush x:Key="OptionMark.Disabled.Border"
-                                     Color="#FFBCBCBC" />
-                    <SolidColorBrush x:Key="OptionMark.Disabled.Glyph"
-                                     Color="#FF707070" />
-                    <SolidColorBrush x:Key="OptionMark.Pressed.Background"
-                                     Color="#FFD9ECFF" />
-                    <SolidColorBrush x:Key="OptionMark.Pressed.Border"
-                                     Color="#FF3C77DD" />
-                    <SolidColorBrush x:Key="OptionMark.Pressed.Glyph"
-                                     Color="#FF212121" />
-                    <SolidColorBrush x:Key="OptionMark.Static.Glyph"
-                                     Color="#FF212121" />
                     <Style TargetType="{x:Type CheckBox}">
                         <Setter Property="FocusVisualStyle"
                                 Value="{StaticResource FocusVisual}" />
@@ -264,12 +213,12 @@
                         FontSize="26"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
-                        Margin="70"
-                        Padding="20,0"
+                        Margin="60"
+                        Padding="35,5"
                         FontFamily="Segoe UI Light"
                         Click="Button_Click" />
             </Grid>
-            <Grid Visibility="Visible"
+            <Grid Visibility="Hidden"
                   x:Name="MainMathGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*" />
@@ -296,6 +245,7 @@
                              VerticalAlignment="Center"
                              KeyUp="MathTextB_KeyUp"
                              Grid.Row="1"
+                             HorizontalContentAlignment="Center"
                              Width="150"
                              FontSize="32"
                              HorizontalAlignment="Center"
