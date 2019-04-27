@@ -12,7 +12,7 @@ namespace QuickMath
     /// </summary>
     public partial class MainWindow : Window
     {
-        Dictionary<CheckBox, char> relations = new Dictionary<CheckBox, char>();
+        Dictionary<CheckBox, char> relationsCheckBOps = new Dictionary<CheckBox, char>();
         List<char> ActiveOps = new List<char>();
 
         System.Windows.Forms.Timer math_timer = new System.Windows.Forms.Timer();
@@ -20,14 +20,14 @@ namespace QuickMath
 
         MathSkillWorker mathWorker;
 
-        short Seconds = 0, Minutes = 3;
+        short Seconds = 0, Minutes = 1;
         public MainWindow()
         {
             InitializeComponent();
-            relations.Add(CheckB_Add, '+');
-            relations.Add(CheckB_Rem, '-');
-            relations.Add(CheckB_Mult, '*');
-            relations.Add(CheckB_Div, '/');
+            relationsCheckBOps.Add(CheckB_Add, '+');
+            relationsCheckBOps.Add(CheckB_Rem, '-');
+            relationsCheckBOps.Add(CheckB_Mult, '*');
+            relationsCheckBOps.Add(CheckB_Div, '/');
 
             math_timer.Tick += Math_timer_Tick;
             memory_timer.Tick += Memory_timer_Tick;
@@ -61,8 +61,9 @@ namespace QuickMath
             }
             if (Minutes == 0 && Seconds == 0)
             {
-                (sender as System.Windows.Forms.Timer).Enabled = false; return;
-                new InfoWindow();
+                (sender as System.Windows.Forms.Timer).Enabled = false; 
+                new InfoWindow().Show();
+                return;
             }
             Seconds--;
             Math_Timer.Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";
@@ -84,7 +85,7 @@ namespace QuickMath
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ActiveOps.Clear();
-            foreach (var pair in relations)
+            foreach (var pair in relationsCheckBOps)
             {
                 if (pair.Key.IsChecked == true)
                     ActiveOps.Add(pair.Value);
