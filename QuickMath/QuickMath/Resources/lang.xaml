@@ -19,6 +19,7 @@
     <v:String x:Key="info_r">Right:</v:String>
     <v:String x:Key="info_w">Wrong:</v:String>
     <v:String x:Key="info_aps">Answers per second:</v:String>
+    <v:String x:Key="info_m">Mark:</v:String>
     <v:String x:Key="info_con">Continue</v:String>
 
 </ResourceDictionary>

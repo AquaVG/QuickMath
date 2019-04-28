@@ -18,6 +18,7 @@
     <v:String x:Key="info_r">Верно:</v:String>
     <v:String x:Key="info_w">Не верно:</v:String>
     <v:String x:Key="info_aps">Ответов в секунду:</v:String>
+    <v:String x:Key="info_m">Оценка:</v:String>
     <v:String x:Key="info_con">Продолжить</v:String>
     
 </ResourceDictionary>

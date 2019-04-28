@@ -20,10 +20,14 @@ namespace QuickMath
 
         MathSkillWorker mathWorker;
 
-        short Seconds = 0, Minutes = 1;
+        short Seconds = 0, Minutes = 3;
         public MainWindow()
         {
             InitializeComponent();
+
+            MainGrid.Visibility = Visibility.Visible;
+            MathGrid.Visibility = MainMathGrid.Visibility = Visibility.Hidden;
+
             relationsCheckBOps.Add(CheckB_Add, '+');
             relationsCheckBOps.Add(CheckB_Rem, '-');
             relationsCheckBOps.Add(CheckB_Mult, '*');
@@ -40,19 +44,19 @@ namespace QuickMath
             {
                 if (int.TryParse(UAnswer_Math.Text, out int a))
                 {
-                    MathSkillWorker.CheckAnswer(Math_Expression.Content.ToString(), Convert.ToInt32(UAnswer_Math.Text));
+                    mathWorker.CheckAnswer(Math_Expression.Content.ToString(), Convert.ToInt32(UAnswer_Math.Text));
                     Math_Expression.Content = mathWorker.Expression;
                     UAnswer_Math.Text = "";
                 }
             }
         }
 
-        private void Memory_timer_Tick(object sender, System.EventArgs e)
+        private void Memory_timer_Tick(object sender, EventArgs e)
         {
             throw new System.NotImplementedException();
         }
 
-        private void Math_timer_Tick(object sender, System.EventArgs e)
+        private void Math_timer_Tick(object sender, EventArgs e)
         {
 
             if (Seconds == 0 && Minutes >= 1)
@@ -62,7 +66,7 @@ namespace QuickMath
             if (Minutes == 0 && Seconds == 0)
             {
                 (sender as System.Windows.Forms.Timer).Enabled = false; 
-                new InfoWindow().Show();
+                new InfoWindow(mathWorker.Right,mathWorker.Wrong).Show();
                 return;
             }
             Seconds--;

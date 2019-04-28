@@ -19,9 +19,18 @@ namespace QuickMath
     /// </summary>
     public partial class InfoWindow : Window
     {
-        public InfoWindow()
+        public InfoWindow(int Right, int Wrong)
         {
             InitializeComponent();
+            Right_Label.Content = Right.ToString();
+            Wrong_Label.Content = Wrong.ToString();
+            Aps_Label.Content = Math.Round((Right + Wrong) / 180d,2);
+            Mark_Label.Content = (Right + Wrong != 0) ? (12 - (12 * Wrong) / (Right + Wrong)).ToString() : "1";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

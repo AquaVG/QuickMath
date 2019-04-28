@@ -6,7 +6,7 @@ namespace QuickMath
 {
     class MathSkillWorker
     {
-        public static int Right = 0, Wrong = 0;
+        public int Right = 0, Wrong = 0;
         private List<char> operations;
         private Random m;
         public string Expression
@@ -41,7 +41,7 @@ namespace QuickMath
                 return $"{first}{currentOp}{second}";
             }
         }
-        public static void CheckAnswer(string expression, int uAns)
+        public void CheckAnswer(string expression, int uAns)
         {
             int result = Convert.ToInt32(new DataTable().Compute(expression, null).ToString());
             if (result == uAns) Right++;
