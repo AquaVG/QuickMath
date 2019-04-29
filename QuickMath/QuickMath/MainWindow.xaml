@@ -43,7 +43,7 @@
                    Content="{DynamicResource m_memory}"
                    VerticalAlignment="Top" />
         </Grid>
-        <Grid Visibility="Visible"
+        <Grid Visibility="Hidden"
               x:Name="MathGrid">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -110,12 +110,46 @@
                              FontSize="32"
                              HorizontalAlignment="Center"
                              VerticalContentAlignment="Center"
-                             Height="54"/>
+                             Height="54" />
                 </Grid>
             </Grid>
         </Grid>
-        <Grid Visibility="Hidden"
+        <Grid Visibility="Visible"
               x:Name="MemoryGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid x:Name="MainMemoryGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
+                <Label x:Name="Memory_Timer"
+                       Content="00:00"
+                       FontFamily="Segoe UI"
+                       FontSize="30"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="30,0" />
+                <Grid Grid.Row="1">
+                    <Label x:Name="Memory_Expression"
+                           Content="000000"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top"
+                           FontSize="34"
+                           Margin="10" />
+                    <TextBox FontSize="30"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             x:Name="UAnswer_Memory"
+                             Width="130"
+                             Text="000000"
+                             HorizontalContentAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Height="50"/>
+                </Grid>
+            </Grid>
 
         </Grid>
     </Grid>
