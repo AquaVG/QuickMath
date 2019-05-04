@@ -99,7 +99,8 @@
                 VerticalAlignment="Center"
                 FontFamily="Microsoft YaHei"
                 FontSize="24"
-                Padding="15,5" />
+                Padding="15,5"
+                Click="Button_Click" />
 
     </Grid>
 </Window>

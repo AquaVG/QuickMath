@@ -19,14 +19,17 @@ namespace QuickMath
         System.Windows.Forms.Timer memory_timer = new System.Windows.Forms.Timer();
 
         MathSkillWorker mathWorker;
+        MemorySkillWorker memoryWorker;
+
+        int LenghtOfNum = 0, SecondsToHide = 0;
 
         short Seconds = 0, Minutes = 3;
         public MainWindow()
         {
             InitializeComponent();
 
-            MainGrid.Visibility = Visibility.Visible;
-            MathGrid.Visibility = MainMathGrid.Visibility = Visibility.Hidden;
+            MainGrid.Visibility = SecondaryMathGrid.Visibility = SecondaryMemoryGrid.Visibility = Visibility.Visible;
+            MathGrid.Visibility = MainMathGrid.Visibility = MainMemoryGrid.Visibility = MemoryGrid.Visibility = Visibility.Hidden;
 
             relationsCheckBOps.Add(CheckB_Add, '+');
             relationsCheckBOps.Add(CheckB_Rem, '-');
@@ -36,6 +39,16 @@ namespace QuickMath
             math_timer.Tick += Math_timer_Tick;
             memory_timer.Tick += Memory_timer_Tick;
             math_timer.Interval = memory_timer.Interval = 1000;
+        }
+        private void MemoryTextB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (int.TryParse(UAnswer_Memory.Text, out int a) && UAnswer_Memory.Text.Length == Memory_Expression.Content.ToString().Length)
+                {
+                } 
+
+            }
         }
 
         private void MathTextB_KeyUp(object sender, KeyEventArgs e)
@@ -67,6 +80,8 @@ namespace QuickMath
             {
                 (sender as System.Windows.Forms.Timer).Enabled = false; 
                 new InfoWindow(mathWorker.Right,mathWorker.Wrong).Show();
+                MainMathGrid.Visibility = MathGrid.Visibility = Visibility.Hidden;
+                MainGrid.Visibility = MathGrid.Visibility = SecondaryMathGrid.Visibility = Visibility.Visible;
                 return;
             }
             Seconds--;

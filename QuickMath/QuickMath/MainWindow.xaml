@@ -140,6 +140,7 @@
                            FontSize="34"
                            Margin="10" />
                     <TextBox FontSize="30"
+                             KeyUp="MemoryTextB_KeyUp"
                              VerticalAlignment="Center"
                              HorizontalAlignment="Center"
                              x:Name="UAnswer_Memory"
@@ -147,10 +148,49 @@
                              Text="000000"
                              HorizontalContentAlignment="Center"
                              VerticalContentAlignment="Center"
-                             Height="50"/>
+                             Height="50" />
                 </Grid>
             </Grid>
-
+            <Grid x:Name="SecondaryMemoryGrid"
+                  Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{DynamicResource memory_lenght}"
+                           FontFamily="Global User Interface"
+                           FontSize="24"
+                           VerticalAlignment="Center"
+                           Margin="20,9,0,9"
+                           HorizontalAlignment="Left"
+                           Grid.ColumnSpan="2" />
+                    <Label Content="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Grid.Column="1"
+                           FontSize="24"
+                           FontFamily="Global User Interface" />
+                </Grid>
+                <Slider Grid.Row="1"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center"
+                        Width="300"/>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{DynamicResource memory_time}" />
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

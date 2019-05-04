@@ -14,6 +14,10 @@
 
     <v:String x:Key="btn_begin">Начать!</v:String>
 
+    <v:String x:Key="memory_lenght">Длина числа:</v:String>
+    <v:String x:Key="memory_time">Время на скрытие:</v:String>
+
+
     <v:String x:Key="info_header">Супер!</v:String>
     <v:String x:Key="info_r">Верно:</v:String>
     <v:String x:Key="info_w">Не верно:</v:String>
