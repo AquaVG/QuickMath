@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -39,6 +40,8 @@ namespace QuickMath
             math_timer.Tick += Math_timer_Tick;
             memory_timer.Tick += Memory_timer_Tick;
             math_timer.Interval = memory_timer.Interval = 1000;
+
+
         }
         private void MemoryTextB_KeyUp(object sender, KeyEventArgs e)
         {
@@ -46,7 +49,7 @@ namespace QuickMath
             {
                 if (int.TryParse(UAnswer_Memory.Text, out int a) && UAnswer_Memory.Text.Length == Memory_Expression.Content.ToString().Length)
                 {
-                } 
+                }
 
             }
         }
@@ -66,7 +69,7 @@ namespace QuickMath
 
         private void Memory_timer_Tick(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+
         }
 
         private void Math_timer_Tick(object sender, EventArgs e)
@@ -78,8 +81,8 @@ namespace QuickMath
             }
             if (Minutes == 0 && Seconds == 0)
             {
-                (sender as System.Windows.Forms.Timer).Enabled = false; 
-                new InfoWindow(mathWorker.Right,mathWorker.Wrong).Show();
+                (sender as System.Windows.Forms.Timer).Enabled = false;
+                new InfoWindow(mathWorker.Right, mathWorker.Wrong).Show();
                 MainMathGrid.Visibility = MathGrid.Visibility = Visibility.Hidden;
                 MainGrid.Visibility = MathGrid.Visibility = SecondaryMathGrid.Visibility = Visibility.Visible;
                 return;
@@ -91,6 +94,24 @@ namespace QuickMath
 
         private bool covered = false;
         private void Link_ChangeColor(object sender, MouseEventArgs e) => (sender as Label).Foreground = !(covered = !covered) ? Brushes.Black : Brushes.LightCoral;
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            SecondaryMemoryGrid.Visibility = Visibility.Hidden;
+            MainMemoryGrid.Visibility = Visibility.Visible;
+            memory_timer.Enabled = true;
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider slider = sender as Slider;
+            slider.Value = Convert.ToInt32(slider.Value);
+            if (slider.Tag == null) return;
+            if (slider.Tag.ToString() == "Nums")
+                LenghtOfNums_Label.Content = LenghtOfNum = Convert.ToInt32(slider.Value);
+            else
+                Time_Label.Content = SecondsToHide = Convert.ToInt32(slider.Value);
+        }
 
         private void Link_Click(object sender, MouseButtonEventArgs e)
         {

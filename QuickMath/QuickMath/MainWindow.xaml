@@ -156,39 +156,18 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
+            
+                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*" />
-                        <ColumnDefinition Width="5*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{DynamicResource memory_lenght}"
-                           FontFamily="Global User Interface"
-                           FontSize="24"
-                           VerticalAlignment="Center"
-                           Margin="20,9,0,9"
-                           HorizontalAlignment="Left"
-                           Grid.ColumnSpan="2" />
-                    <Label Content="0"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Left"
-                           Grid.Column="1"
-                           FontSize="24"
-                           FontFamily="Global User Interface" />
+                <Label Style="{StaticResource LabelMemory}" Content="Lenght of number:"
+                       HorizontalAlignment="Left" />
                 </Grid>
-                <Slider Grid.Row="1"
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Center"
-                        Width="300"/>
+                <Grid Grid.Row="1">
+                    
+                </Grid>
                 <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*" />
-                        <ColumnDefinition Width="5*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Content="{DynamicResource memory_time}" />
+                    
                 </Grid>
             </Grid>
         </Grid>

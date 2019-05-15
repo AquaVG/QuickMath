@@ -182,5 +182,12 @@
         <Setter Property="Margin"
                 Value="20,5" />
     </Style>
+    <Style TargetType="Label" x:Key="LabelMemory">
+        <Setter Property="Margin" Value="20,0"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="Global User Interface"/>
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
    
 </ResourceDictionary>
