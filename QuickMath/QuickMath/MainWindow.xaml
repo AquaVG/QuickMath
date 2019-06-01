@@ -3,15 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="QuickMath"
-        Height="600"
+        Height="633.878"
         Width="510"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize">
     <Grid>
         <Grid x:Name="MainGrid"
-              Visibility="Hidden">
+              Visibility="Visible">
             <Grid.Resources>
                 <Style TargetType="Label">
                     <Setter Property="HorizontalAlignment"
@@ -33,11 +34,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition Height="0.4*"/>
             </Grid.RowDefinitions>
             <Label Tag="Math"
                    Content="{DynamicResource m_math}"
                    VerticalAlignment="Bottom"
-                   FontFamily="Global User Interface" />
+                   FontFamily="Global User Interface"
+                   Background="#00000000" />
             <Label Grid.Row="1"
                    Tag="Memory"
                    Content="{DynamicResource m_memory}"
@@ -76,7 +79,7 @@
                         Margin="80"
                         Padding="35,5"
                         FontFamily="Segoe UI Light"
-                        Click="Button_Click" />
+                        Click="MathButton_Click" />
             </Grid>
             <Grid Visibility="Visible"
                   x:Name="MainMathGrid">
@@ -114,7 +117,7 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Grid Visibility="Visible"
+        <Grid Visibility="Hidden"
               x:Name="MemoryGrid">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -145,29 +148,57 @@
                              HorizontalAlignment="Center"
                              x:Name="UAnswer_Memory"
                              Width="130"
-                             Text="000000"
+                             Text=""
                              HorizontalContentAlignment="Center"
                              VerticalContentAlignment="Center"
                              Height="50" />
                 </Grid>
             </Grid>
             <Grid x:Name="SecondaryMemoryGrid"
-                  Grid.Row="1">
+                  Grid.Row="1"
+                  Visibility="Hidden">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
-            
-                    <RowDefinition Height="2*"/>
+
+                    <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
                 <Grid>
-                <Label Style="{StaticResource LabelMemory}" Content="Lenght of number:"
-                       HorizontalAlignment="Left" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{StaticResource LabelMemory}"
+                           Content="{DynamicResource memory_lenght}"
+                           HorizontalAlignment="Right"
+                           Margin="0" />
+                    <xctk:IntegerUpDown Value="4"
+                                        x:Name="LenghtOfNum_IntegerUD"
+                                        Maximum="6"
+                                        Minimum="4" />
                 </Grid>
                 <Grid Grid.Row="1">
-                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{StaticResource LabelMemory}"
+                           Content="{DynamicResource memory_time}"
+                           HorizontalAlignment="Right"
+                           Margin="0" />
+                    <xctk:IntegerUpDown Value="1"
+                                        x:Name="SecondsToHide_IntegerUD"
+                                        Maximum="3"
+                                        Minimum="1" />
                 </Grid>
                 <Grid Grid.Row="2">
-                    
+                    <Button Content="{DynamicResource btn_begin}"
+                            FontSize="26"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Padding="40,10"
+                            FontFamily="Segoe UI Semilight"
+                            Click="MemoryButton_Click" />
                 </Grid>
             </Grid>
         </Grid>

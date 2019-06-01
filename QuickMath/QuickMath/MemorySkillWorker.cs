@@ -18,12 +18,12 @@ namespace QuickMath
         public string Expression
         {
             get{
-                string expression = "";
-                for (int i = 0; i <= Lenght; i++)
+                string range = "1";
+                for (int i = 0; i < Lenght-1; i++)
                 {
-                    expression += new Random().Next(0, 10).ToString();
+                    range += "0";
                 }
-                return expression;
+                return new Random().Next(Convert.ToInt32(range), Convert.ToInt32(range + "0")).ToString();
             }
         }
         public MemorySkillWorker (int lenght)
