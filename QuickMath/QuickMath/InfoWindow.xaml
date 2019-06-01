@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="InfoWindow"
         Height="500"
-        Width="400">
+        Width="400"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
@@ -48,7 +50,9 @@
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                FontSize="45"
-               FontFamily="Segoe Print" />
+               FontFamily="Segoe Print"
+               Foreground="#FFFF831D"
+               BorderBrush="#FF080808" />
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*" />
@@ -97,7 +101,7 @@
                 Content="{DynamicResource info_con}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                FontFamily="Microsoft YaHei"
+                FontFamily="Segoe UI Semilight"
                 FontSize="24"
                 Padding="15,5"
                 Click="Button_Click" />
