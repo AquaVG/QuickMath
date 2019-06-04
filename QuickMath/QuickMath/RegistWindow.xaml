@@ -3,10 +3,121 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:QuickMath"
         mc:Ignorable="d"
-        Title="RegistWindow" Height="450" Width="800">
+        Title="Quick Math - Registration"
+        Height="591.878"
+        Width="439.6"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Icon="Brain-Games-red-256.ico">
     <Grid>
-        
+        <Grid.Resources>
+            <Style TargetType="Label"
+                   x:Key="LabelInf">
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Right" />
+                <Setter Property="FontSize"
+                        Value="24" />
+                <Setter Property="FontWeight"
+                        Value="ExtraLight" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="126*" />
+        </Grid.RowDefinitions>
+        <Grid VerticalAlignment="Top"
+              Height="90"
+              Grid.RowSpan="2">
+            <Rectangle VerticalAlignment="Stretch"
+                       HorizontalAlignment="Stretch"
+                       Height="90"
+                       Fill="#FFF75151" />
+            <Label Content="{DynamicResource reg_header}"
+                   FontSize="36"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontFamily="Segoe UI Light" />
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="{DynamicResource reg_name}"
+                   Style="{StaticResource LabelInf}"
+                   Height="42"
+                   Width="124" />
+            <TextBox Grid.Column="1"
+                     Text=""
+                     Margin="15,20"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Stretch"
+                     FontSize="24"
+                     VerticalContentAlignment="Center" />
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="{DynamicResource reg_math}"
+                   Style="{StaticResource LabelInf}"
+                   Height="42" />
+            <xctk:IntegerUpDown Value="1"
+                                Maximum="10"
+                                Minimum="1"
+                                Width="50" />
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="{DynamicResource reg_memory}"
+                   Style="{StaticResource LabelInf}"
+                   Height="42"
+                   Width="194" />
+            <xctk:IntegerUpDown Value="1"
+                                Maximum="10"
+                                Minimum="1"
+                                Width="50" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+            <Label Style="{StaticResource LabelInf}"
+                   Content="{DynamicResource reg_lang}"
+                   Height="42"/>
+            <ComboBox Grid.Column="1"
+                      FontSize="18"
+                      SelectedIndex="0"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Width="140"
+                      DropDownClosed="ComboBox_DropDownClosed"
+                      Height="30">
+                <ComboBoxItem>English</ComboBoxItem>
+                <ComboBoxItem>Русский</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Button Content="{DynamicResource reg_regist}"
+                    FontSize="27"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Padding="20,7"
+                    Click="Button_Click" />
+        </Grid>
     </Grid>
 </Window>

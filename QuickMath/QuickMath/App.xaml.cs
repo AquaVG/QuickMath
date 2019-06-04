@@ -78,5 +78,13 @@ namespace QuickMath
             QuickMath.Properties.Settings.Default.Save();
 
         }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            if (QuickMath.Properties.Settings.Default.IsRegisted)
+                new MainWindow().Show();
+            else
+                new RegistWindow().Show();
+        }
     }
 }

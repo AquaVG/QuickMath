@@ -24,4 +24,12 @@
     <v:String x:Key="info_m">Mark:</v:String>
     <v:String x:Key="info_con">Continue</v:String>
 
+    <v:String x:Key="reg_header">Registration</v:String>
+    <v:String x:Key="reg_regist">Regist</v:String>
+    <v:String x:Key="reg_lang">Language:</v:String>
+    <v:String x:Key="reg_name">Your name:</v:String>
+    <v:String x:Key="reg_math">Math skill level:</v:String>
+    <v:String x:Key="reg_memory">Memory skill level:</v:String>
+
+
 </ResourceDictionary>

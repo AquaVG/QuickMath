@@ -22,6 +22,17 @@ namespace QuickMath
         public RegistWindow()
         {
             InitializeComponent();
+            App.Language = new System.Globalization.CultureInfo("en-US");
+        }
+        private void ComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            App.Language = new System.Globalization.CultureInfo((sender as ComboBox).SelectedIndex == 0 ? "en-US" : "ru-RU");
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -24,5 +24,11 @@
     <v:String x:Key="info_aps">Ответов в секунду:</v:String>
     <v:String x:Key="info_m">Оценка:</v:String>
     <v:String x:Key="info_con">Продолжить</v:String>
-    
+
+    <v:String x:Key="reg_header">Регестрация</v:String>
+    <v:String x:Key="reg_regist">Зарегестрироваться</v:String>
+    <v:String x:Key="reg_lang">Язык:</v:String>
+    <v:String x:Key="reg_name">Ваше имя:</v:String>
+    <v:String x:Key="reg_math">Уровень математики:</v:String>
+    <v:String x:Key="reg_memory">Уровень памяти:</v:String>
 </ResourceDictionary>
