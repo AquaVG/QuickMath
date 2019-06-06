@@ -58,6 +58,7 @@
                    Width="124" />
             <TextBox Grid.Column="1"
                      Text=""
+                     x:Name="Name_TextBox"
                      Margin="15,20"
                      HorizontalAlignment="Stretch"
                      VerticalAlignment="Stretch"
@@ -74,6 +75,7 @@
                    Height="42" />
             <xctk:IntegerUpDown Value="1"
                                 Maximum="10"
+                                x:Name="Math_IntegerUpDown"
                                 Minimum="1"
                                 Width="50" />
         </Grid>
@@ -88,6 +90,7 @@
                    Width="194" />
             <xctk:IntegerUpDown Value="1"
                                 Maximum="10"
+                                x:Name="Memory_IntegerUpDown"
                                 Minimum="1"
                                 Width="50" />
         </Grid>

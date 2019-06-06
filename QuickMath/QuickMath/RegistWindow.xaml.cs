@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace QuickMath
 {
@@ -27,12 +17,16 @@ namespace QuickMath
         private void ComboBox_DropDownClosed(object sender, EventArgs e)
         {
             App.Language = new System.Globalization.CultureInfo((sender as ComboBox).SelectedIndex == 0 ? "en-US" : "ru-RU");
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Properties.Settings.Default.IsRegisted = true;
+            Properties.Settings.Default.Name = Name_TextBox.Text;
+            Properties.Settings.Default.MathL = Math_IntegerUpDown.Value ?? 1;
+            Properties.Settings.Default.MemoryL = Memory_IntegerUpDown.Value ?? 1;
+            new MainWindow().Show();
+            Close();
         }
     }
 }
