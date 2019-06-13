@@ -34,53 +34,5 @@ namespace QuickMath.Properties {
                 this["DefaultLanguage"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsRegisted {
-            get {
-                return ((bool)(this["IsRegisted"]));
-            }
-            set {
-                this["IsRegisted"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Name {
-            get {
-                return ((string)(this["Name"]));
-            }
-            set {
-                this["Name"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int MathL {
-            get {
-                return ((int)(this["MathL"]));
-            }
-            set {
-                this["MathL"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int MemoryL {
-            get {
-                return ((int)(this["MemoryL"]));
-            }
-            set {
-                this["MemoryL"] = value;
-            }
-        }
     }
 }

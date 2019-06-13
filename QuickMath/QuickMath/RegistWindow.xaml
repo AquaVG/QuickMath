@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:QuickMath"
         mc:Ignorable="d"
         Title="Quick Math - Registration"
-        Height="591.878"
-        Width="439.6"
+        Height="597.842"
+        Width="471.654"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
         Icon="Brain-Games-red-256.ico">
@@ -101,15 +101,16 @@
             </Grid.ColumnDefinitions>
             <Label Style="{StaticResource LabelInf}"
                    Content="{DynamicResource reg_lang}"
-                   Height="42"/>
+                   Height="42" />
             <ComboBox Grid.Column="1"
                       FontSize="18"
                       SelectedIndex="0"
-                      HorizontalAlignment="Center"
+                      HorizontalAlignment="Left"
                       VerticalAlignment="Center"
                       Width="140"
                       DropDownClosed="ComboBox_DropDownClosed"
-                      Height="30">
+                      Height="30"
+                      Margin="15">
                 <ComboBoxItem>English</ComboBoxItem>
                 <ComboBoxItem>Русский</ComboBoxItem>
             </ComboBox>

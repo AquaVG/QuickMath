@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,15 +15,14 @@ namespace QuickMath
     /// </summary>
     public partial class MainWindow : Window
     {
-        Dictionary<CheckBox, char> relationsCheckBOps = new Dictionary<CheckBox, char>();
-        List<char> ActiveOps = new List<char>();
-
         System.Windows.Forms.Timer math_timer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer memory_timer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer hide_timer = new System.Windows.Forms.Timer();
 
         MathSkillWorker mathWorker;
         MemorySkillWorker memoryWorker;
+
+        User user;
 
         short Seconds = 0, Minutes = 3;
         public MainWindow()
@@ -29,10 +31,10 @@ namespace QuickMath
 
             StartVisibility();
 
-            relationsCheckBOps.Add(CheckB_Add, '+');
-            relationsCheckBOps.Add(CheckB_Rem, '-');
-            relationsCheckBOps.Add(CheckB_Mult, '*');
-            relationsCheckBOps.Add(CheckB_Div, '/');
+            user = JsonConvert.DeserializeObject<User>(File.ReadAllText("user.json"));
+
+            mathWorker = new MathSkillWorker(user.MathInfo.Level);
+            memoryWorker = new MemorySkillWorker(user.MemoryInfo.Level);
 
             UAnswer_Memory.Text = "";
 
@@ -43,9 +45,20 @@ namespace QuickMath
             math_timer.Tag = "math";
             memory_timer.Tag = "memory";
 
+            string opsList = "";
+            foreach (char item in mathWorker.EnableActions)
+            {
+                opsList += item + " ";
+            }
+            MathOps_Label.Content = opsList.Remove(opsList.Length - 1);
+            MathLevel_Label.Content = user.MathInfo.Level;
+
+            MemoryLevel_Label.Content = user.MemoryInfo.Level;
+            MemoryLenght_Label.Content = memoryWorker.Lenght;
+            MemoryTime_Label.Content = memoryWorker.SecondsToHide;
+
             math_timer.Interval = memory_timer.Interval = 1000;
         }
-
         private void StartVisibility()
         {
             MainGrid.Visibility = SecondaryMathGrid.Visibility = SecondaryMemoryGrid.Visibility = Visibility.Visible;
@@ -70,9 +83,10 @@ namespace QuickMath
         {
             if (e.Key == Key.Enter)
             {
-                if (int.TryParse(UAnswer_Math.Text, out int a))
+                string uAns = UAnswer_Math.Text.Replace('.', ',');
+                if (double.TryParse(uAns, out double a))
                 {
-                    mathWorker.CheckAnswer(Math_Expression.Content.ToString(), Convert.ToInt32(UAnswer_Math.Text));
+                    mathWorker.CheckAnswer(Math_Expression.Content.ToString(), Convert.ToDouble(uAns));
                     Math_Expression.Content = mathWorker.Expression;
                     UAnswer_Math.Text = "";
                 }
@@ -90,9 +104,9 @@ namespace QuickMath
             {
                 timer.Enabled = false;
                 if (timer.Tag.ToString() == "math")
-                    new InfoWindow(mathWorker.Right, mathWorker.Wrong).Show();
+                    new InfoWindow(mathWorker.Right, mathWorker.Wrong, PracType.Math, ref user).Show();
                 else
-                    new InfoWindow(memoryWorker.Right, memoryWorker.Wrong).Show();
+                    new InfoWindow(memoryWorker.Right, memoryWorker.Wrong, PracType.Memory, ref user).Show();
                 StartVisibility();
                 return;
             }
@@ -107,34 +121,28 @@ namespace QuickMath
 
         private void MemoryButton_Click(object sender, RoutedEventArgs e)
         {
+            user = JsonConvert.DeserializeObject<User>(File.ReadAllText("user.json"));
             SecondaryMemoryGrid.Visibility = Visibility.Hidden;
             MainMemoryGrid.Visibility = Visibility.Visible;
             memory_timer.Enabled = true;
             Memory_Timer.Content = $"0{Minutes}:00";
-            memoryWorker = new MemorySkillWorker(LenghtOfNum_IntegerUD.Value ?? 4);
+            memoryWorker = new MemorySkillWorker(user.MemoryInfo.Level);
             Memory_Expression.Content = memoryWorker.Expression;
-            hide_timer.Interval = (SecondsToHide_IntegerUD.Value ?? 1) * 1000;
+            hide_timer.Interval = memoryWorker.SecondsToHide * 1000;
             hide_timer.Enabled = true;
+
         }
         private void MathButton_Click(object sender, RoutedEventArgs e)
         {
-            ActiveOps.Clear();
-            foreach (var pair in relationsCheckBOps)
-            {
-                if (pair.Key.IsChecked == true)
-                    ActiveOps.Add(pair.Value);
-            }
-            if (ActiveOps.Count < 2)
-            {
-                MessageBox.Show("You must select more than 2 operations.", "Error.");
-                return;
-            }
+            user = JsonConvert.DeserializeObject<User>(File.ReadAllText("user.json"));
             SecondaryMathGrid.Visibility = Visibility.Hidden;
             MainMathGrid.Visibility = Visibility.Visible;
             math_timer.Enabled = true;
-            Math_Timer.Content = $"0{Minutes}:00";
-            mathWorker = new MathSkillWorker(ActiveOps);
+            Minutes = 3;
+            Math_Timer.Content = "03:00";
             Math_Expression.Content = mathWorker.Expression;
+            UAnswer_Math.Text = "";
+            UAnswer_Math.Focus();
         }
         private bool covered = false;
         private void Link_ChangeColor(object sender, MouseEventArgs e) => (sender as Label).Foreground = !(covered = !covered) 
@@ -147,7 +155,5 @@ namespace QuickMath
             if (current.Tag.ToString() == "Math") MathGrid.Visibility = Visibility.Visible;
             else MemoryGrid.Visibility = Visibility.Visible;
         }
-
-
     }
 }

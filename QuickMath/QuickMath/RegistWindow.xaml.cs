@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Globalization;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace QuickMath
 {
@@ -12,19 +15,18 @@ namespace QuickMath
         public RegistWindow()
         {
             InitializeComponent();
-            App.Language = new System.Globalization.CultureInfo("en-US");
+            App.Language = new CultureInfo("en-US");
         }
         private void ComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            App.Language = new System.Globalization.CultureInfo((sender as ComboBox).SelectedIndex == 0 ? "en-US" : "ru-RU");
+            App.Language = new CultureInfo((sender as ComboBox).SelectedIndex == 0 ? "en-US" : "ru-RU");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.IsRegisted = true;
-            Properties.Settings.Default.Name = Name_TextBox.Text;
-            Properties.Settings.Default.MathL = Math_IntegerUpDown.Value ?? 1;
-            Properties.Settings.Default.MemoryL = Memory_IntegerUpDown.Value ?? 1;
+            User user = new User(Name_TextBox.Text, new PracticeTypeInfo(Math_IntegerUpDown.Value ?? 1, 0), new PracticeTypeInfo(Memory_IntegerUpDown.Value ?? 1, 0));
+            File.WriteAllText("user.json", JsonConvert.SerializeObject(user, Formatting.Indented));
+            Properties.Settings.Default.Save();
             new MainWindow().Show();
             Close();
         }

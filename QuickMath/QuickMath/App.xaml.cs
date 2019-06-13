@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows;
 
@@ -81,7 +82,7 @@ namespace QuickMath
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            if (QuickMath.Properties.Settings.Default.IsRegisted)
+            if (File.Exists("user.json"))
                 new MainWindow().Show();
             else
                 new RegistWindow().Show();
