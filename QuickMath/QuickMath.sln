@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.329
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickMath", "QuickMath\QuickMath.csproj", "{3BBD25E7-D5A3-4909-A158-9498575D497F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F73F0643-B9B4-4E5D-9496-A5CEE6C07970}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

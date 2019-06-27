@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using QuickMath.SkillWorkers;
+using QuickMath.Windows;
 
 namespace QuickMath
 {
@@ -30,11 +30,7 @@ namespace QuickMath
             InitializeComponent();
 
             StartVisibility();
-
-            user = JsonConvert.DeserializeObject<User>(File.ReadAllText("user.json"));
-
-            mathWorker = new MathSkillWorker(user.MathInfo.Level);
-            memoryWorker = new MemorySkillWorker(user.MemoryInfo.Level);
+            UpdateUserInfo();
 
             UAnswer_Memory.Text = "";
 
@@ -44,6 +40,20 @@ namespace QuickMath
 
             math_timer.Tag = "math";
             memory_timer.Tag = "memory";
+
+            math_timer.Interval = memory_timer.Interval = 1000;
+        }
+        private void StartVisibility()
+        {
+            MainGrid.Visibility = SecondaryMathGrid.Visibility = SecondaryMemoryGrid.Visibility = Visibility.Visible;
+            MathGrid.Visibility = MainMathGrid.Visibility = MainMemoryGrid.Visibility = MemoryGrid.Visibility = Visibility.Hidden;
+        }
+        private void UpdateUserInfo()
+        {
+            user = JsonConvert.DeserializeObject<User>(File.ReadAllText("user.json"));
+
+            mathWorker = new MathSkillWorker(user.MathInfo.Level);
+            memoryWorker = new MemorySkillWorker(user.MemoryInfo.Level);
 
             string opsList = "";
             foreach (char item in mathWorker.EnableActions)
@@ -56,15 +66,7 @@ namespace QuickMath
             MemoryLevel_Label.Content = user.MemoryInfo.Level;
             MemoryLenght_Label.Content = memoryWorker.Lenght;
             MemoryTime_Label.Content = memoryWorker.SecondsToHide;
-
-            math_timer.Interval = memory_timer.Interval = 1000;
         }
-        private void StartVisibility()
-        {
-            MainGrid.Visibility = SecondaryMathGrid.Visibility = SecondaryMemoryGrid.Visibility = Visibility.Visible;
-            MathGrid.Visibility = MainMathGrid.Visibility = MainMemoryGrid.Visibility = MemoryGrid.Visibility = Visibility.Hidden;
-        }
-
         private void MemoryTextB_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -104,10 +106,11 @@ namespace QuickMath
             {
                 timer.Enabled = false;
                 if (timer.Tag.ToString() == "math")
-                    new InfoWindow(mathWorker.Right, mathWorker.Wrong, PracType.Math, ref user).Show();
+                    new ResultWindow(mathWorker.Right, mathWorker.Wrong, PracType.Math, ref user).Show();
                 else
-                    new InfoWindow(memoryWorker.Right, memoryWorker.Wrong, PracType.Memory, ref user).Show();
+                    new ResultWindow(memoryWorker.Right, memoryWorker.Wrong, PracType.Memory, ref user).Show();
                 StartVisibility();
+                UpdateUserInfo();
                 return;
             }
             Seconds--;
@@ -130,7 +133,8 @@ namespace QuickMath
             Memory_Expression.Content = memoryWorker.Expression;
             hide_timer.Interval = memoryWorker.SecondsToHide * 1000;
             hide_timer.Enabled = true;
-
+            UAnswer_Memory.Text = "";
+            UAnswer_Memory.Focus();
         }
         private void MathButton_Click(object sender, RoutedEventArgs e)
         {
@@ -145,8 +149,8 @@ namespace QuickMath
             UAnswer_Math.Focus();
         }
         private bool covered = false;
-        private void Link_ChangeColor(object sender, MouseEventArgs e) => (sender as Label).Foreground = !(covered = !covered) 
-                                                                                          ? Brushes.Black 
+        private void Link_ChangeColor(object sender, MouseEventArgs e) => (sender as Label).Foreground = !(covered = !covered)
+                                                                                          ? Brushes.Black
                                                                                           : (SolidColorBrush)(new BrushConverter().ConvertFrom("#0ee1ff"));
         private void Link_Click(object sender, MouseButtonEventArgs e)
         {

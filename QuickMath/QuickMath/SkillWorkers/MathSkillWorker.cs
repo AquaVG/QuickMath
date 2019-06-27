@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace QuickMath
+namespace QuickMath.SkillWorkers
 {
     class MathSkillWorker
     {

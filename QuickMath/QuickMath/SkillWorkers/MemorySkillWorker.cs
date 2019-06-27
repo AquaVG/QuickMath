@@ -1,7 +1,7 @@
 ﻿using AquaDir;
 using System;
 
-namespace QuickMath
+namespace QuickMath.SkillWorkers
 {
     class MemorySkillWorker
     {
