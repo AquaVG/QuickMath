@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using QuickMath.SkillWorkers;
 using QuickMath.Windows;
+using System.Diagnostics;
 
 namespace QuickMath
 {
@@ -46,7 +47,7 @@ namespace QuickMath
         private void StartVisibility()
         {
             MainGrid.Visibility = SecondaryMathGrid.Visibility = SecondaryMemoryGrid.Visibility = Visibility.Visible;
-            MathGrid.Visibility = MainMathGrid.Visibility = MainMemoryGrid.Visibility = MemoryGrid.Visibility = Visibility.Hidden;
+            MathGrid.Visibility = MainMathGrid.Visibility = MainMemoryGrid.Visibility = MemoryGrid.Visibility = SettingsGrid.Visibility = Visibility.Hidden;
         }
         private void UpdateUserInfo()
         {
@@ -152,6 +153,14 @@ namespace QuickMath
         private void Link_ChangeColor(object sender, MouseEventArgs e) => (sender as Label).Foreground = !(covered = !covered)
                                                                                           ? Brushes.Black
                                                                                           : (SolidColorBrush)(new BrushConverter().ConvertFrom("#0ee1ff"));
+        private void SettingsIcon_Click (object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                MainGrid.Visibility = Visibility.Hidden;
+                SettingsGrid.Visibility = Visibility.Visible;
+            }
+        }
         private void Link_Click(object sender, MouseButtonEventArgs e)
         {
             MainGrid.Visibility = Visibility.Hidden;
