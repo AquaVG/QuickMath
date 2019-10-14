@@ -25,6 +25,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+<<<<<<< HEAD
+=======
+    <Prefer32Bit>false</Prefer32Bit>
+>>>>>>> Progressbar added, timer bug fixed
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,9 +38,16 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+<<<<<<< HEAD
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Brain-Games-red-256.ico</ApplicationIcon>
+=======
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>quickmath.ico</ApplicationIcon>
+>>>>>>> Progressbar added, timer bug fixed
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AquaDir">
@@ -83,7 +94,11 @@
     </ApplicationDefinition>
     <Compile Include="SkillWorkers\MathSkillWorker.cs" />
     <Compile Include="SkillWorkers\MemorySkillWorker.cs" />
+<<<<<<< HEAD
     <Compile Include="User.cs" />
+=======
+    <Compile Include="SkillWorkers\User.cs" />
+>>>>>>> Progressbar added, timer bug fixed
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -145,19 +160,29 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+<<<<<<< HEAD
     <Page Include="Resources\lang.uk-UA.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+=======
+>>>>>>> Progressbar added, timer bug fixed
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Resource Include="Brain-Games-red-256.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="dripicons-v2-by-amitjakhu.png" />
+=======
+    <Resource Include="quickmath.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="back.png" />
+>>>>>>> Progressbar added, timer bug fixed
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

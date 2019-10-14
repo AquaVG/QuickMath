@@ -3,24 +3,46 @@
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
     <v:String x:Key="m_math">Математическая тренировка</v:String>
     <v:String x:Key="m_memory">Тренировка памяти</v:String>
+<<<<<<< HEAD
     <v:String x:Key="desc_level">Ваш уровень:</v:String>
     <v:String x:Key="desc_header">Ваши параметры:</v:String>
     <v:String x:Key="desc_math_ops">Доступные операции:</v:String>
     <v:String x:Key="desc_memory_lenght">Длинна чисел:</v:String>
     <v:String x:Key="desc_memory_time">Время до скрытия:</v:String>
     <v:String x:Key="btn_begin">Начать!</v:String>
+=======
+    
+    <v:String x:Key="desc_level">Ваш уровень:</v:String>
+    <v:String x:Key="desc_math_ops">Доступные операции:</v:String>
+
+    <v:String x:Key="desc_math_header">Ваша информация:</v:String>
+    <v:String x:Key="desc_memory_header">Ваша информация:</v:String>
+    
+    <v:String x:Key="desc_memory_lenght">Длинна чисел:</v:String>
+    <v:String x:Key="desc_memory_time">Время до скрытия:</v:String>
+
+    <v:String x:Key="btn_begin">Начать!</v:String>
+
+>>>>>>> Progressbar added, timer bug fixed
     <v:String x:Key="info_header">Супер!</v:String>
     <v:String x:Key="info_r">Верно:</v:String>
     <v:String x:Key="info_w">Не верно:</v:String>
     <v:String x:Key="info_aps">Ответов в секунду:</v:String>
     <v:String x:Key="info_m">Оценка:</v:String>
     <v:String x:Key="info_con">Продолжить</v:String>
+<<<<<<< HEAD
+=======
+
+>>>>>>> Progressbar added, timer bug fixed
     <v:String x:Key="reg_header">Регестрация</v:String>
     <v:String x:Key="reg_regist">Зарегестрироваться</v:String>
     <v:String x:Key="reg_lang">Язык:</v:String>
     <v:String x:Key="reg_name">Ваше имя:</v:String>
     <v:String x:Key="reg_math">Уровень математики:</v:String>
     <v:String x:Key="reg_memory">Уровень памяти:</v:String>
+<<<<<<< HEAD
     <v:String x:Key="settings_header">Настройки</v:String>
 
+=======
+>>>>>>> Progressbar added, timer bug fixed
 </ResourceDictionary>

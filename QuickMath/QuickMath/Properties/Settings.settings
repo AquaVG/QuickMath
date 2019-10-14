@@ -3,7 +3,11 @@
   <Profiles />
   <Settings>
     <Setting Name="DefaultLanguage" Type="System.Globalization.CultureInfo" Scope="User">
+<<<<<<< HEAD
       <Value Profile="(Default)">(Default)</Value>
+=======
+      <Value Profile="(Default)">ru-RU</Value>
+>>>>>>> Progressbar added, timer bug fixed
     </Setting>
   </Settings>
 </SettingsFile>

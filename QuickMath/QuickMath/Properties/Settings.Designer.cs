@@ -12,7 +12,11 @@ namespace QuickMath.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+<<<<<<< HEAD
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.1.0.0")]
+=======
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.2.0.0")]
+>>>>>>> Progressbar added, timer bug fixed
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,7 +29,11 @@ namespace QuickMath.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("(Default)")]
+=======
+        [global::System.Configuration.DefaultSettingValueAttribute("ru-RU")]
+>>>>>>> Progressbar added, timer bug fixed
         public global::System.Globalization.CultureInfo DefaultLanguage {
             get {
                 return ((global::System.Globalization.CultureInfo)(this["DefaultLanguage"]));
