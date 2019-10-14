@@ -9,7 +9,9 @@
         Height="500"
         Width="400"
         ResizeMode="CanMinimize"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon="/QuickMath;component/quickmath.ico"
+        ShowInTaskbar="False">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />

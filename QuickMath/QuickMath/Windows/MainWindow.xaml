@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:QuickMath"
         mc:Ignorable="d"
         Title="QuickMath"
         Height="640"
         Width="510"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        Icon="/QuickMath;component/quickmath.ico">
     <Grid>
         <Grid x:Name="MainGrid"
               Visibility="Hidden">
@@ -32,150 +34,37 @@
                 </Style>
             </Grid.Resources>
             <Grid.RowDefinitions>
-                <RowDefinition Height="74*" />
-                <RowDefinition Height="151*" />
-                <RowDefinition Height="386*" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="0.4*" />
             </Grid.RowDefinitions>
-            <Image Width="50"
-                   Height="50"
-                   MouseDown="SettingsIcon_Click"
-                   Source="/QuickMath;component/dripicons-v2-by-amitjakhu.png">
-                <Image.RenderTransform>
-                    <ScaleTransform x:Name="scale"
-                                    CenterX="25"
-                                    CenterY="25"
-                                    ScaleX="1"
-                                    ScaleY="1" />
-                </Image.RenderTransform>
-                <Image.Triggers>
-                    <EventTrigger RoutedEvent="Image.MouseEnter">
-                        <BeginStoryboard>
-                            <BeginStoryboard.Storyboard>
-                                <Storyboard Duration="0:0:0.25">
-                                    <DoubleAnimation Storyboard.TargetName="scale"
-                                                     Storyboard.TargetProperty="ScaleX"
-                                                     To="1.3" />
-                                    <DoubleAnimation Storyboard.TargetName="scale"
-                                                     Storyboard.TargetProperty="ScaleY"
-                                                     To="1.3" />
-                                </Storyboard>
-                            </BeginStoryboard.Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Image.MouseLeave">
-                        <BeginStoryboard>
-                            <BeginStoryboard.Storyboard>
-                                <Storyboard Duration="0:0:0.25">
-                                    <DoubleAnimation Storyboard.TargetName="scale"
-                                                     Storyboard.TargetProperty="ScaleX"
-                                                     To="1" />
-                                    <DoubleAnimation Storyboard.TargetName="scale"
-                                                     Storyboard.TargetProperty="ScaleY"
-                                                     To="1" />
-                                </Storyboard>
-                            </BeginStoryboard.Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Image.Triggers>
-            </Image>
             <Label Tag="Math"
-                   Grid.Row="1"
                    Content="{DynamicResource m_math}"
                    VerticalAlignment="Bottom"
-                   FontFamily="Global User Interface" />
-            <Label Tag="Memory"
-                   Grid.Row="2"
+                   FontFamily="Global User Interface"
+                   Background="#00000000" />
+            <Label Grid.Row="1"
+                   Tag="Memory"
                    Content="{DynamicResource m_memory}"
                    VerticalAlignment="Top" />
         </Grid>
-        <Grid x:Name="SettingsGrid"
+        <Grid x:Name="MathGrid"
               Visibility="Visible">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="4*" />
-                <RowDefinition Height="4*" />
-            </Grid.RowDefinitions>
-            <Grid>
-                <Label HorizontalAlignment="Center"
-                       Content="{DynamicResource settings_header}"
-                       Style="{StaticResource LabelMemory}"
-                       FontSize="30" />
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-            </Grid>
-        </Grid>
-        <Grid Visibility="Hidden"
-              x:Name="MathGrid">
-            <Grid.RowDefinitions>
+                <RowDefinition Height="0.15*" />
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1"
-                  Visibility="Visible"
-                  x:Name="SecondaryMathGrid">
-                <StackPanel Orientation="Vertical">
-                    <Label Content="{DynamicResource desc_math_header}"
-                           Style="{StaticResource LabelMemory}"
-                           HorizontalAlignment="Left"
-                           Margin="20,10" />
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="{Binding ElementName=DescLevel, Path=Width}" />
-                            <ColumnDefinition Width="5*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Content="{DynamicResource desc_level}"
-                               Style="{StaticResource LabelMemory}"
-                               FontSize="22"
-                               x:Name="DescLevel"
-                               HorizontalAlignment="Left"
-                               Margin="35,0,0,0" />
-                        <Label Content="0"
-                               Style="{StaticResource LabelMemory}"
-                               Grid.Column="1"
-                               Margin="0"
-                               HorizontalAlignment="Left"
-                               FontSize="21"
-                               x:Name="MathLevel_Label" />
-                    </Grid>
-                    <Grid Margin="0,15">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="{Binding ElementName=DescMathOps, Path=Width}" />
-                            <ColumnDefinition Width="5*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Content="{DynamicResource desc_math_ops}"
-                               Style="{StaticResource LabelMemory}"
-                               FontSize="22"
-                               x:Name="DescMathOps"
-                               HorizontalAlignment="Left"
-                               Margin="35,0,0,0" />
-                        <Label x:Name="MathOps_Label"
-                               FontSize="21"
-                               HorizontalAlignment="Left"
-                               Content="0"
-                               Grid.Column="1"
-                               Margin="0"
-                               Style="{StaticResource LabelMemory}" />
-                    </Grid>
-                </StackPanel>
-                <Grid Margin="0,150,0,0">
-                    <Button Content="{DynamicResource btn_begin}"
-                            FontSize="26"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Padding="35,5"
-                            FontFamily="Segoe UI Light"
-                            Click="MathButton_Click" />
-                </Grid>
-
+            <Grid x:Name="MathBackBtn"
+                  Margin="0,10,0,0">
+                <Image Source="/QuickMath;component/back.png"
+                       HorizontalAlignment="Left"
+                       MouseLeftButtonUp="BackButton_Click"
+                       Margin="25,0,0,0" />
             </Grid>
-            <Grid Visibility="Visible"
-                  x:Name="MainMathGrid">
+            <Grid x:Name="MainMathGrid"
+                  Grid.Row="1"
+                  Visibility="Visible">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*" />
                     <RowDefinition Height="5*" />
@@ -209,14 +98,104 @@
                              Height="54" />
                 </Grid>
             </Grid>
+            <Grid x:Name="SecondaryMathGrid"
+                  Grid.Row="2"
+                  Visibility="Visible">
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="2">
+
+                    <Label Content="{DynamicResource desc_math_header}"
+                           Style="{StaticResource LabelMemory}"
+                           HorizontalAlignment="Left"
+                           Margin="20,10" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{DynamicResource desc_level}"
+                               Style="{StaticResource LabelMemory}"
+                               FontSize="22"
+                               HorizontalAlignment="Left"
+                               Margin="35,0,0,0" />
+                        <Label Content="0"
+                               Style="{StaticResource LabelMemory}"
+                               Grid.Column="1"
+                               Margin="0"
+                               HorizontalAlignment="Left"
+                               FontSize="21"
+                               x:Name="MathLevel_Label" />
+                        <Grid Grid.Column="2">
+                            <ProgressBar Name="PbMathLvl"
+                                         Minimum="0"
+                                         Maximum="200"
+                                         Value="0"
+                                         Margin="5,5,20,5"
+                                         Height="24"
+                                         Foreground="#FF62FF7F" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}/{1}">
+                                        <Binding Path="Value"
+                                                 ElementName="PbMathLvl" />
+                                        <Binding Path="Maximum"
+                                                 ElementName="PbMathLvl" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Grid>
+                    </Grid>
+                    <Grid Margin="0,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{DynamicResource desc_math_ops}"
+                               Style="{StaticResource LabelMemory}"
+                               FontSize="22"
+                               HorizontalAlignment="Left"
+                               Margin="35,0,0,0" />
+                        <Label x:Name="MathOps_Label"
+                               FontSize="21"
+                               HorizontalAlignment="Left"
+                               Content="0"
+                               Grid.Column="1"
+                               Margin="0"
+                               Style="{StaticResource LabelMemory}" />
+                    </Grid>
+                </StackPanel>
+                <Button Content="{DynamicResource btn_begin}"
+                        FontSize="26"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Padding="35,5"
+                        Margin="0,150,0,0"
+                        FontFamily="Segoe UI Light"
+                        Click="MathButton_Click" />
+            </Grid>
         </Grid>
-        <Grid Visibility="Hidden"
-              x:Name="MemoryGrid">
+        <Grid x:Name="MemoryGrid"
+              Visibility="Hidden">
             <Grid.RowDefinitions>
+                <RowDefinition Height="0.15*" />
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid x:Name="MainMemoryGrid">
+            <Grid x:Name="MemoryBackBtn"
+                  Margin="20,10,0,0"
+                  HorizontalAlignment="Left"
+                  Width="38">
+                <Image Source="/QuickMath;component/back.png"
+                       HorizontalAlignment="Stretch"
+                       MouseLeftButtonUp="BackButton_Click" />
+            </Grid>
+            <Grid x:Name="MainMemoryGrid"
+                  Grid.Row="1"
+                  Visibility="Visible">
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*" />
                     <RowDefinition Height="5*" />
@@ -247,9 +226,10 @@
                              Height="50" />
                 </Grid>
             </Grid>
-            <Grid Grid.Row="1"
-                  Visibility="Visible"
-                  x:Name="SecondaryMemoryGrid">
+            <Grid x:Name="SecondaryMemoryGrid"
+                  Grid.Row="2"
+                  Visibility="Visible">
+
                 <StackPanel Orientation="Vertical">
                     <Label Content="{DynamicResource desc_memory_header}"
                            Style="{StaticResource LabelMemory}"
@@ -257,13 +237,14 @@
                            Margin="20,10" />
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="{Binding ElementName=DescLevel2, Path=Width}" />
-                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+
                         </Grid.ColumnDefinitions>
                         <Label Content="{DynamicResource desc_level}"
                                Style="{StaticResource LabelMemory}"
                                FontSize="22"
-                               x:Name="DescLevel2"
                                HorizontalAlignment="Left"
                                Margin="35,0,0,0" />
                         <Label Content="0"
@@ -273,16 +254,36 @@
                                HorizontalAlignment="Left"
                                FontSize="21"
                                x:Name="MemoryLevel_Label" />
+                        <Grid Grid.Column="2">
+                            <ProgressBar Name="PbMemoryLvl"
+                                         Minimum="0"
+                                         Maximum="200"
+                                         Value="0"
+                                         Margin="5,5,20,5"
+                                         Height="24"
+                                         Foreground="#FF62FF7F" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}/{1}">
+                                        <Binding Path="Value"
+                                                 ElementName="PbMemoryLvl" />
+                                        <Binding Path="Maximum"
+                                                 ElementName="PbMemoryLvl" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </Grid>
                     </Grid>
                     <Grid Margin="0,15">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="{Binding ElementName=DescMemoryLenght, Path=Width}" />
-                            <ColumnDefinition Width="34*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+
                         </Grid.ColumnDefinitions>
                         <Label Content="{DynamicResource desc_memory_lenght}"
                                Style="{StaticResource LabelMemory}"
                                FontSize="22"
-                               x:Name="DescMemoryLenght"
                                HorizontalAlignment="Left"
                                Margin="35,0,0,0" />
                         <Label x:Name="MemoryLenght_Label"
@@ -295,19 +296,18 @@
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="{Binding ElementName=DescMemoryTime, Path=Width}" />
-                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+
                         </Grid.ColumnDefinitions>
                         <Label Content="{DynamicResource desc_memory_time}"
                                Style="{StaticResource LabelMemory}"
                                FontSize="22"
                                HorizontalAlignment="Left"
-                               x:Name="DescMemoryTime"
                                Margin="35,0,0,0" />
                         <Label Content="0"
                                x:Name="MemoryTime_Label"
                                FontSize="21"
-                               VerticalAlignment="Center"
                                HorizontalAlignment="Left"
                                Grid.Column="1" />
                     </Grid>
@@ -321,7 +321,6 @@
                             FontFamily="Segoe UI Light"
                             Click="MemoryButton_Click" />
                 </Grid>
-
             </Grid>
         </Grid>
     </Grid>

@@ -9,6 +9,8 @@
     <v:String x:Key="desc_memory_lenght">Длинна чисел:</v:String>
     <v:String x:Key="desc_memory_time">Время до скрытия:</v:String>
     <v:String x:Key="btn_begin">Начать!</v:String>
+    <v:String x:Key="desc_math_header">Ваша информация:</v:String>
+    <v:String x:Key="desc_memory_header">Ваша информация:</v:String>
     <v:String x:Key="info_header">Супер!</v:String>
     <v:String x:Key="info_r">Верно:</v:String>
     <v:String x:Key="info_w">Не верно:</v:String>
@@ -22,5 +24,4 @@
     <v:String x:Key="reg_math">Уровень математики:</v:String>
     <v:String x:Key="reg_memory">Уровень памяти:</v:String>
     <v:String x:Key="settings_header">Настройки</v:String>
-
 </ResourceDictionary>

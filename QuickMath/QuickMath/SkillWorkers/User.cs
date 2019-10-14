@@ -14,7 +14,7 @@ namespace QuickMath
 
         public User(string name, PracticeTypeInfo mathInfo, PracticeTypeInfo memoryInfo)
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
+            this.Name = name ?? throw new ArgumentNullException(nameof(name));
             MathInfo = mathInfo;
             MemoryInfo = memoryInfo;
         }

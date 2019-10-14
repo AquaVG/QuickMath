@@ -20,21 +20,24 @@ namespace QuickMath
         System.Windows.Forms.Timer memory_timer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer hide_timer = new System.Windows.Forms.Timer();
 
+
         MathSkillWorker mathWorker;
         MemorySkillWorker memoryWorker;
 
         User user;
-
-        short Seconds = 0, Minutes = 3;
+ 
+        readonly short[ ] timerdata = new short[2];
+        short Seconds = 25, Minutes = 0;
         public MainWindow()
         {
             InitializeComponent();
-
+            timerdata[0] = Seconds;
+            timerdata[1] = Minutes;
             StartVisibility();
             UpdateUserInfo();
-
+            DataContext = this;
             UAnswer_Memory.Text = "";
-
+ 
             math_timer.Tick += Timer_Tick;
             memory_timer.Tick += Timer_Tick;
             hide_timer.Tick += Hide_MemoryTimer_Tick;
@@ -47,12 +50,18 @@ namespace QuickMath
         private void StartVisibility()
         {
             MainGrid.Visibility = SecondaryMathGrid.Visibility = SecondaryMemoryGrid.Visibility = Visibility.Visible;
-            MathGrid.Visibility = MainMathGrid.Visibility = MainMemoryGrid.Visibility = MemoryGrid.Visibility = SettingsGrid.Visibility = Visibility.Hidden;
+ 
+            MathGrid.Visibility = MainMathGrid.Visibility = MainMemoryGrid.Visibility = MemoryGrid.Visibility = Visibility.Hidden;
+ 
         }
         private void UpdateUserInfo()
         {
             user = JsonConvert.DeserializeObject<User>(File.ReadAllText("user.json"));
 
+            PbMathLvl.Value = user.MathInfo.Score;
+            PbMemoryLvl.Value = user.MemoryInfo.Score;
+
+ 
             mathWorker = new MathSkillWorker(user.MathInfo.Level);
             memoryWorker = new MemorySkillWorker(user.MemoryInfo.Level);
 
@@ -68,6 +77,14 @@ namespace QuickMath
             MemoryLenght_Label.Content = memoryWorker.Lenght;
             MemoryTime_Label.Content = memoryWorker.SecondsToHide;
         }
+ 
+ 
+        private void BackButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            StartVisibility();
+            math_timer.Enabled = memory_timer.Enabled = false;
+        }
+ 
         private void MemoryTextB_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -76,7 +93,12 @@ namespace QuickMath
                 {
                     memoryWorker.CheckAnswer((string)Memory_Expression.Content, UAnswer_Memory.Text);
                     Memory_Expression.Content = memoryWorker.Expression;
+ 
                     hide_timer.Enabled = true;
+ 
+                    hide_timer.Stop();
+                    hide_timer.Start();
+ 
                     Memory_Expression.Visibility = Visibility.Visible;
                     UAnswer_Memory.Text = "";
                 }
@@ -107,20 +129,27 @@ namespace QuickMath
             {
                 timer.Enabled = false;
                 if (timer.Tag.ToString() == "math")
-                    new ResultWindow(mathWorker.Right, mathWorker.Wrong, PracType.Math, ref user).Show();
+                    new ResultWindow(mathWorker.Right, mathWorker.Wrong, PracType.Math, ref user).ShowDialog();
                 else
-                    new ResultWindow(memoryWorker.Right, memoryWorker.Wrong, PracType.Memory, ref user).Show();
+                    new ResultWindow(memoryWorker.Right, memoryWorker.Wrong, PracType.Memory, ref user).ShowDialog();
+ 
                 StartVisibility();
                 UpdateUserInfo();
                 return;
-            }
+            }  
             Seconds--;
+            Debug.WriteLine("-1 sec");
+ 
             (timer.Tag.ToString() == "math" ? Math_Timer : Memory_Timer).Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";
         }
         private void Hide_MemoryTimer_Tick(object sender, EventArgs e)
         {
             Memory_Expression.Visibility = Visibility.Hidden;
+ 
             hide_timer.Enabled = false;
+ 
+            hide_timer.Stop();
+ 
         }
 
         private void MemoryButton_Click(object sender, RoutedEventArgs e)
@@ -129,7 +158,13 @@ namespace QuickMath
             SecondaryMemoryGrid.Visibility = Visibility.Hidden;
             MainMemoryGrid.Visibility = Visibility.Visible;
             memory_timer.Enabled = true;
+ 
             Memory_Timer.Content = $"0{Minutes}:00";
+ 
+            Seconds = timerdata[0];
+            Minutes = timerdata[1];
+            Memory_Timer.Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";
+ 
             memoryWorker = new MemorySkillWorker(user.MemoryInfo.Level);
             Memory_Expression.Content = memoryWorker.Expression;
             hide_timer.Interval = memoryWorker.SecondsToHide * 1000;
@@ -143,8 +178,14 @@ namespace QuickMath
             SecondaryMathGrid.Visibility = Visibility.Hidden;
             MainMathGrid.Visibility = Visibility.Visible;
             math_timer.Enabled = true;
+ 
             Minutes = 3;
             Math_Timer.Content = "03:00";
+ 
+            Seconds = timerdata[0];
+            Minutes = timerdata[1];
+            Math_Timer.Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";
+ 
             Math_Expression.Content = mathWorker.Expression;
             UAnswer_Math.Text = "";
             UAnswer_Math.Focus();
@@ -152,15 +193,15 @@ namespace QuickMath
         private bool covered = false;
         private void Link_ChangeColor(object sender, MouseEventArgs e) => (sender as Label).Foreground = !(covered = !covered)
                                                                                           ? Brushes.Black
+ 
                                                                                           : (SolidColorBrush)(new BrushConverter().ConvertFrom("#0ee1ff"));
         private void SettingsIcon_Click (object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 MainGrid.Visibility = Visibility.Hidden;
-                SettingsGrid.Visibility = Visibility.Visible;
             }
-        }
+        } 
         private void Link_Click(object sender, MouseButtonEventArgs e)
         {
             MainGrid.Visibility = Visibility.Hidden;

@@ -53,7 +53,7 @@ namespace QuickMath
                     default:
                         if (File.Exists($"Resources/lang.{value.Name}.xaml"))
                         {
-                            Debug.WriteLine("Файла нет! Ошибка - App.xaml.cs строка 55");
+                            Debug.WriteLine("Файла нет! Ошибка - App.xaml.cs строка 56");
                         }
                         dict.Source = new Uri(string.Format("Resources/lang.{0}.xaml", value.Name), UriKind.Relative);
                         break;
