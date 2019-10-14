@@ -27,7 +27,7 @@ namespace QuickMath
         User user;
  
         readonly short[ ] timerdata = new short[2];
-        short Seconds = 25, Minutes = 0;
+        short Seconds = 10, Minutes = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -138,8 +138,6 @@ namespace QuickMath
                 return;
             }  
             Seconds--;
-            Debug.WriteLine("-1 sec");
- 
             (timer.Tag.ToString() == "math" ? Math_Timer : Memory_Timer).Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";
         }
         private void Hide_MemoryTimer_Tick(object sender, EventArgs e)
