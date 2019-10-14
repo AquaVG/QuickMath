@@ -4,21 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-<<<<<<< HEAD
-=======
         xmlns:local="clr-namespace:QuickMath"
->>>>>>> Progressbar added, timer bug fixed
         mc:Ignorable="d"
         Title="QuickMath"
         Height="640"
         Width="510"
         WindowStartupLocation="CenterScreen"
-<<<<<<< HEAD
-        ResizeMode="CanMinimize">
-=======
         ResizeMode="CanMinimize"
         Icon="/QuickMath;component/quickmath.ico">
->>>>>>> Progressbar added, timer bug fixed
     <Grid>
         <Grid x:Name="MainGrid"
               Visibility="Hidden">
@@ -41,96 +34,6 @@
                 </Style>
             </Grid.Resources>
             <Grid.RowDefinitions>
-<<<<<<< HEAD
-                <RowDefinition Height="74*" />
-                <RowDefinition Height="151*" />
-                <RowDefinition Height="386*" />
-            </Grid.RowDefinitions>
-            <Image Width="50"
-                   Height="50"
-                   MouseDown="SettingsIcon_Click"
-                   Source="/QuickMath;component/dripicons-v2-by-amitjakhu.png">
-                <Image.RenderTransform>
-                    <ScaleTransform x:Name="scale"
-                                    CenterX="25"
-                                    CenterY="25"
-                                    ScaleX="1"
-                                    ScaleY="1" />
-                </Image.RenderTransform>
-                <Image.Triggers>
-                    <EventTrigger RoutedEvent="Image.MouseEnter">
-                        <BeginStoryboard>
-                            <BeginStoryboard.Storyboard>
-                                <Storyboard Duration="0:0:0.25">
-                                    <DoubleAnimation Storyboard.TargetName="scale"
-                                                     Storyboard.TargetProperty="ScaleX"
-                                                     To="1.3" />
-                                    <DoubleAnimation Storyboard.TargetName="scale"
-                                                     Storyboard.TargetProperty="ScaleY"
-                                                     To="1.3" />
-                                </Storyboard>
-                            </BeginStoryboard.Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Image.MouseLeave">
-                        <BeginStoryboard>
-                            <BeginStoryboard.Storyboard>
-                                <Storyboard Duration="0:0:0.25">
-                                    <DoubleAnimation Storyboard.TargetName="scale"
-                                                     Storyboard.TargetProperty="ScaleX"
-                                                     To="1" />
-                                    <DoubleAnimation Storyboard.TargetName="scale"
-                                                     Storyboard.TargetProperty="ScaleY"
-                                                     To="1" />
-                                </Storyboard>
-                            </BeginStoryboard.Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Image.Triggers>
-            </Image>
-            <Label Tag="Math"
-                   Grid.Row="1"
-                   Content="{DynamicResource m_math}"
-                   VerticalAlignment="Bottom"
-                   FontFamily="Global User Interface" />
-            <Label Tag="Memory"
-                   Grid.Row="2"
-                   Content="{DynamicResource m_memory}"
-                   VerticalAlignment="Top" />
-        </Grid>
-        <Grid x:Name="SettingsGrid"
-              Visibility="Visible">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="4*" />
-                <RowDefinition Height="4*" />
-            </Grid.RowDefinitions>
-            <Grid>
-                <Label HorizontalAlignment="Center"
-                       Content="{DynamicResource settings_header}"
-                       Style="{StaticResource LabelMemory}"
-                       FontSize="30" />
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-            </Grid>
-        </Grid>
-        <Grid Visibility="Hidden"
-              x:Name="MathGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="1"
-                  Visibility="Visible"
-                  x:Name="SecondaryMathGrid">
-                <StackPanel Orientation="Vertical">
-=======
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition Height="0.4*" />
@@ -200,29 +103,20 @@
                   Visibility="Visible">
                 <StackPanel Orientation="Vertical"
                             Grid.Row="2">
->>>>>>> Progressbar added, timer bug fixed
+
                     <Label Content="{DynamicResource desc_math_header}"
                            Style="{StaticResource LabelMemory}"
                            HorizontalAlignment="Left"
                            Margin="20,10" />
                     <Grid>
                         <Grid.ColumnDefinitions>
-<<<<<<< HEAD
-                            <ColumnDefinition Width="{Binding ElementName=DescLevel, Path=Width}" />
-                            <ColumnDefinition Width="5*" />
-=======
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
->>>>>>> Progressbar added, timer bug fixed
                         </Grid.ColumnDefinitions>
                         <Label Content="{DynamicResource desc_level}"
                                Style="{StaticResource LabelMemory}"
                                FontSize="22"
-<<<<<<< HEAD
-                               x:Name="DescLevel"
-=======
->>>>>>> Progressbar added, timer bug fixed
                                HorizontalAlignment="Left"
                                Margin="35,0,0,0" />
                         <Label Content="0"
@@ -232,13 +126,6 @@
                                HorizontalAlignment="Left"
                                FontSize="21"
                                x:Name="MathLevel_Label" />
-<<<<<<< HEAD
-                    </Grid>
-                    <Grid Margin="0,15">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="{Binding ElementName=DescMathOps, Path=Width}" />
-                            <ColumnDefinition Width="5*" />
-=======
                         <Grid Grid.Column="2">
                             <ProgressBar Name="PbMathLvl"
                                          Minimum="0"
@@ -264,15 +151,11 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
->>>>>>> Progressbar added, timer bug fixed
+
                         </Grid.ColumnDefinitions>
                         <Label Content="{DynamicResource desc_math_ops}"
                                Style="{StaticResource LabelMemory}"
                                FontSize="22"
-<<<<<<< HEAD
-                               x:Name="DescMathOps"
-=======
->>>>>>> Progressbar added, timer bug fixed
                                HorizontalAlignment="Left"
                                Margin="35,0,0,0" />
                         <Label x:Name="MathOps_Label"
@@ -284,62 +167,6 @@
                                Style="{StaticResource LabelMemory}" />
                     </Grid>
                 </StackPanel>
-<<<<<<< HEAD
-                <Grid Margin="0,150,0,0">
-                    <Button Content="{DynamicResource btn_begin}"
-                            FontSize="26"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Padding="35,5"
-                            FontFamily="Segoe UI Light"
-                            Click="MathButton_Click" />
-                </Grid>
-
-            </Grid>
-            <Grid Visibility="Visible"
-                  x:Name="MainMathGrid">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1.5*" />
-                    <RowDefinition Height="5*" />
-                </Grid.RowDefinitions>
-                <Label x:Name="Math_Timer"
-                       Content="00:00"
-                       FontFamily="Segoe UI"
-                       FontSize="30"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       Margin="30,0" />
-                <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Label x:Name="Math_Expression"
-                           FontSize="34"
-                           Content="0+0"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
-                    <TextBox x:Name="UAnswer_Math"
-                             VerticalAlignment="Center"
-                             KeyUp="MathTextB_KeyUp"
-                             Grid.Row="1"
-                             HorizontalContentAlignment="Center"
-                             Width="125"
-                             FontSize="32"
-                             HorizontalAlignment="Center"
-                             VerticalContentAlignment="Center"
-                             Height="54" />
-                </Grid>
-            </Grid>
-        </Grid>
-        <Grid Visibility="Hidden"
-              x:Name="MemoryGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid x:Name="MainMemoryGrid">
-=======
                 <Button Content="{DynamicResource btn_begin}"
                         FontSize="26"
                         HorizontalAlignment="Center"
@@ -368,7 +195,7 @@
             <Grid x:Name="MainMemoryGrid"
                   Grid.Row="1"
                   Visibility="Visible">
->>>>>>> Progressbar added, timer bug fixed
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*" />
                     <RowDefinition Height="5*" />
@@ -399,15 +226,10 @@
                              Height="50" />
                 </Grid>
             </Grid>
-<<<<<<< HEAD
-            <Grid Grid.Row="1"
-                  Visibility="Visible"
-                  x:Name="SecondaryMemoryGrid">
-=======
             <Grid x:Name="SecondaryMemoryGrid"
                   Grid.Row="2"
                   Visibility="Visible">
->>>>>>> Progressbar added, timer bug fixed
+
                 <StackPanel Orientation="Vertical">
                     <Label Content="{DynamicResource desc_memory_header}"
                            Style="{StaticResource LabelMemory}"
@@ -415,22 +237,14 @@
                            Margin="20,10" />
                     <Grid>
                         <Grid.ColumnDefinitions>
-<<<<<<< HEAD
-                            <ColumnDefinition Width="{Binding ElementName=DescLevel2, Path=Width}" />
-                            <ColumnDefinition Width="5*" />
-=======
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
->>>>>>> Progressbar added, timer bug fixed
+
                         </Grid.ColumnDefinitions>
                         <Label Content="{DynamicResource desc_level}"
                                Style="{StaticResource LabelMemory}"
                                FontSize="22"
-<<<<<<< HEAD
-                               x:Name="DescLevel2"
-=======
->>>>>>> Progressbar added, timer bug fixed
                                HorizontalAlignment="Left"
                                Margin="35,0,0,0" />
                         <Label Content="0"
@@ -440,13 +254,6 @@
                                HorizontalAlignment="Left"
                                FontSize="21"
                                x:Name="MemoryLevel_Label" />
-<<<<<<< HEAD
-                    </Grid>
-                    <Grid Margin="0,15">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="{Binding ElementName=DescMemoryLenght, Path=Width}" />
-                            <ColumnDefinition Width="34*" />
-=======
                         <Grid Grid.Column="2">
                             <ProgressBar Name="PbMemoryLvl"
                                          Minimum="0"
@@ -472,15 +279,11 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
->>>>>>> Progressbar added, timer bug fixed
+
                         </Grid.ColumnDefinitions>
                         <Label Content="{DynamicResource desc_memory_lenght}"
                                Style="{StaticResource LabelMemory}"
                                FontSize="22"
-<<<<<<< HEAD
-                               x:Name="DescMemoryLenght"
-=======
->>>>>>> Progressbar added, timer bug fixed
                                HorizontalAlignment="Left"
                                Margin="35,0,0,0" />
                         <Label x:Name="MemoryLenght_Label"
@@ -493,30 +296,18 @@
                     </Grid>
                     <Grid>
                         <Grid.ColumnDefinitions>
-<<<<<<< HEAD
-                            <ColumnDefinition Width="{Binding ElementName=DescMemoryTime, Path=Width}" />
-                            <ColumnDefinition Width="4*" />
-=======
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
->>>>>>> Progressbar added, timer bug fixed
+
                         </Grid.ColumnDefinitions>
                         <Label Content="{DynamicResource desc_memory_time}"
                                Style="{StaticResource LabelMemory}"
                                FontSize="22"
                                HorizontalAlignment="Left"
-<<<<<<< HEAD
-                               x:Name="DescMemoryTime"
-=======
->>>>>>> Progressbar added, timer bug fixed
                                Margin="35,0,0,0" />
                         <Label Content="0"
                                x:Name="MemoryTime_Label"
                                FontSize="21"
-<<<<<<< HEAD
-                               VerticalAlignment="Center"
-=======
->>>>>>> Progressbar added, timer bug fixed
                                HorizontalAlignment="Left"
                                Grid.Column="1" />
                     </Grid>
@@ -530,7 +321,6 @@
                             FontFamily="Segoe UI Light"
                             Click="MemoryButton_Click" />
                 </Grid>
-
             </Grid>
         </Grid>
     </Grid>
