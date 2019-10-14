@@ -31,14 +31,14 @@ namespace QuickMath
             get => score;
             set {
                 score = value;
-                if (score < 0 && Level > 1)
+                if (score < 0 && Level > 1) //In case substraction our new score will be less than 0, we "level-down" and new score now equals 200 - value
                 {
                     score = 200 + score;
                     Level--;
                 }
                 else
                 {
-                    while (score >= 200 && Level < 10)
+                    while (score >= 200 && Level < 10)//otherwise we just substract 200 from score till score more than 200. Btw doing "level-up"
                     {
                         score -= 200;
                         Level++;
