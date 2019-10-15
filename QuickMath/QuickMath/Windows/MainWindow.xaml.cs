@@ -20,14 +20,13 @@ namespace QuickMath
         System.Windows.Forms.Timer memory_timer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer hide_timer = new System.Windows.Forms.Timer();
 
-
         MathSkillWorker mathWorker;
         MemorySkillWorker memoryWorker;
 
         User user;
  
         readonly short[ ] timerdata = new short[2];
-        short Seconds = 10, Minutes = 0;
+        short Seconds = 0, Minutes = 3;
         public MainWindow()
         {
             InitializeComponent();
@@ -52,7 +51,8 @@ namespace QuickMath
             MainGrid.Visibility = SecondaryMathGrid.Visibility = SecondaryMemoryGrid.Visibility = Visibility.Visible;
  
             MathGrid.Visibility = MainMathGrid.Visibility = MainMemoryGrid.Visibility = MemoryGrid.Visibility = Visibility.Hidden;
- 
+
+            Memory_Expression.Visibility = Visibility.Visible;
         }
         private void UpdateUserInfo()
         {
@@ -156,10 +156,7 @@ namespace QuickMath
             SecondaryMemoryGrid.Visibility = Visibility.Hidden;
             MainMemoryGrid.Visibility = Visibility.Visible;
             memory_timer.Enabled = true;
- 
-            Memory_Timer.Content = $"0{Minutes}:00";
- 
-            Seconds = timerdata[0];
+             Seconds = timerdata[0];
             Minutes = timerdata[1];
             Memory_Timer.Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";
  
@@ -176,14 +173,9 @@ namespace QuickMath
             SecondaryMathGrid.Visibility = Visibility.Hidden;
             MainMathGrid.Visibility = Visibility.Visible;
             math_timer.Enabled = true;
- 
-            Minutes = 3;
-            Math_Timer.Content = "03:00";
- 
             Seconds = timerdata[0];
             Minutes = timerdata[1];
             Math_Timer.Content = Seconds >= 10 ? $"0{Minutes}:{Seconds}" : $"0{Minutes}:0{Seconds}";
- 
             Math_Expression.Content = mathWorker.Expression;
             UAnswer_Math.Text = "";
             UAnswer_Math.Focus();

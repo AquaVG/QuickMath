@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -23,12 +22,10 @@ namespace QuickMath
             Languages.Clear();
             Languages.Add(new CultureInfo("en-US")); //Нейтральная культура для этого проекта
             Languages.Add(new CultureInfo("ru-RU"));
-            Languages.Add(new CultureInfo("uk-UA"));
 
             Language = QuickMath.Properties.Settings.Default.DefaultLanguage;
         }
 
-        //Евент для оповещения всех окон приложения
         public static event EventHandler LanguageChanged;
 
         public static CultureInfo Language
@@ -40,26 +37,23 @@ namespace QuickMath
                 if (value == null) throw new ArgumentNullException("value");
                 if (value == System.Threading.Thread.CurrentThread.CurrentUICulture) return;
 
-                //1. Меняем язык приложения:
                 System.Threading.Thread.CurrentThread.CurrentUICulture = value;
 
-                //2. Создаём ResourceDictionary для новой культуры
                 ResourceDictionary dict = new ResourceDictionary();
-                switch (value.Name)
+                try
                 {
-                    case "en-US":
-                        dict.Source = new Uri("Resources/lang.xaml", UriKind.Relative);
-                        break;
-                    default:
-                        if (File.Exists($"Resources/lang.{value.Name}.xaml"))
-                        {
-                            Debug.WriteLine("Файла нет! Ошибка - App.xaml.cs строка 56");
-                        }
-                        dict.Source = new Uri(string.Format("Resources/lang.{0}.xaml", value.Name), UriKind.Relative);
-                        break;
+                    switch (value.Name)
+                    {
+                        case "en-US":
+                            dict.Source = new Uri("Resources/lang.xaml", UriKind.Relative);
+                            break;
+                        default:
+                            dict.Source = new Uri($"Resources/lang.{value.Name}.xaml", UriKind.Relative);
+                            break;
+                    }
                 }
+                catch (Exception) { } //Have no idea for what, but without this, it doesnt work
 
-                //3. Находим старую ResourceDictionary и удаляем его и добавляем новую ResourceDictionary
                 var oldDict = (from d in Current.Resources.MergedDictionaries
                                where d.Source != null && d.Source.OriginalString.StartsWith("Resources/lang.")
                                select d).First();
@@ -74,7 +68,6 @@ namespace QuickMath
                     Current.Resources.MergedDictionaries.Add(dict);
                 }
 
-                //4. Вызываем евент для оповещения всех окон.
                 LanguageChanged(Current, new EventArgs());
             }
         }
