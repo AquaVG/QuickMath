@@ -48,13 +48,12 @@
 
             </Style>
         </Grid.Resources>
-        <Label Content="{DynamicResource info_header}"
+        <Label Content="Super!"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
-               FontSize="45"
-               FontFamily="Segoe Print"
+               FontSize="48"
                Foreground="#FFFF831D"
-               BorderBrush="#FF080808" />
+               BorderBrush="#FF080808" FontFamily="Script MT Bold" />
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*" />

@@ -11,7 +11,6 @@
     <v:String x:Key="btn_begin">Start!</v:String>
     <v:String x:Key="desc_math_header">Math info:</v:String>
     <v:String x:Key="desc_memory_header">Memory info:</v:String>
-    <v:String x:Key="info_header">Super!</v:String>
     <v:String x:Key="info_r">Right:</v:String>
     <v:String x:Key="info_w">Wrong:</v:String>
     <v:String x:Key="info_aps">Answers per second:</v:String>

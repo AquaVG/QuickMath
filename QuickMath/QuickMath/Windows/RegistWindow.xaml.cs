@@ -14,11 +14,13 @@ namespace QuickMath
     /// </summary>
     public partial class RegistWindow : Window
     {
+        
         public RegistWindow()
         {
             InitializeComponent();
             App.Language = new CultureInfo("en-US");
             RegistBtn.IsEnabled = false;
+            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\QuickMath");
         }
         private void ComboBox_DropDownClosed(object sender, EventArgs e)
         {
@@ -28,7 +30,7 @@ namespace QuickMath
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             User user = new User(Name_TextBox.Text, new PracticeTypeInfo(Math_IntegerUpDown.Value ?? 1), new PracticeTypeInfo(Memory_IntegerUpDown.Value ?? 1));
-            File.WriteAllText("user.json", JsonConvert.SerializeObject(user, Formatting.Indented));
+            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+@"\QuickMath\user.json", JsonConvert.SerializeObject(user, Formatting.Indented));
             Properties.Settings.Default.Save();
             new MainWindow().Show();
             Close();

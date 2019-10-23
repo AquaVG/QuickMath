@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace QuickMath
         {
             InitializeComponent();
             LanguageChanged += App_LanguageChanged;
-
+            Debug.WriteLine(Path.GetFullPath(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\QuickMath\user.json"));
             Languages.Clear();
             Languages.Add(new CultureInfo("en-US")); //Нейтральная культура для этого проекта
             Languages.Add(new CultureInfo("ru-RU"));
@@ -81,7 +82,7 @@ namespace QuickMath
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            if (File.Exists("user.json"))
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\QuickMath\user.json"))
                 new MainWindow().Show();
             else
                 new RegistWindow().Show();

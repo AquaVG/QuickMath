@@ -16,6 +16,7 @@ namespace QuickMath
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string userFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+@"\QuickMath\user.json";
         System.Windows.Forms.Timer math_timer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer memory_timer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer hide_timer = new System.Windows.Forms.Timer();
@@ -26,12 +27,20 @@ namespace QuickMath
         User user;
  
         readonly short[ ] timerdata = new short[2];
-        short Seconds = 0, Minutes = 3;
+        short Seconds, Minutes;
         public MainWindow()
         {
             InitializeComponent();
+            Minutes = 3;
+            Seconds = 0;
+#if DEBUG
+            Debug.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\QuickMath\user.json");
+            Minutes = 0;
+            Seconds = 10;
+#endif
             timerdata[0] = Seconds;
             timerdata[1] = Minutes;
+
             StartVisibility();
             UpdateUserInfo();
             DataContext = this;
@@ -56,7 +65,7 @@ namespace QuickMath
         }
         private void UpdateUserInfo()
         {
-            user = JsonConvert.DeserializeObject<User>(File.ReadAllText("user.json"));
+            user = JsonConvert.DeserializeObject<User>(File.ReadAllText(userFilePath));
 
             PbMathLvl.Value = user.MathInfo.Score;
             PbMemoryLvl.Value = user.MemoryInfo.Score;
@@ -152,7 +161,7 @@ namespace QuickMath
 
         private void MemoryButton_Click(object sender, RoutedEventArgs e)
         {
-            user = JsonConvert.DeserializeObject<User>(File.ReadAllText("user.json"));
+            user = JsonConvert.DeserializeObject<User>(File.ReadAllText(userFilePath));
             SecondaryMemoryGrid.Visibility = Visibility.Hidden;
             MainMemoryGrid.Visibility = Visibility.Visible;
             memory_timer.Enabled = true;
@@ -169,7 +178,7 @@ namespace QuickMath
         }
         private void MathButton_Click(object sender, RoutedEventArgs e)
         {
-            user = JsonConvert.DeserializeObject<User>(File.ReadAllText("user.json"));
+            user = JsonConvert.DeserializeObject<User>(File.ReadAllText(userFilePath));
             SecondaryMathGrid.Visibility = Visibility.Hidden;
             MainMathGrid.Visibility = Visibility.Visible;
             math_timer.Enabled = true;
