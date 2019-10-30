@@ -22,7 +22,7 @@ namespace QuickMath.Windows
                 user.MathInfo.Score += Right - Wrong;
             else
                 user.MemoryInfo.Score += Right - Wrong;
-            File.WriteAllText("user.json", JsonConvert.SerializeObject(user, Formatting.Indented));
+            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\QuickMath\user.json", JsonConvert.SerializeObject(user, Formatting.Indented));
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
