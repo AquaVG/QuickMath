@@ -38,11 +38,11 @@ namespace QuickMath.SkillWorkers
         public string Expression
         {
             get {
-                double num1 = 0, num2 = 0;
+                double num1, num2 = 0;
                 char operation = EnableActions[m.Next(0, EnableActions.Count)];
                 if (operation == '+' || operation == '-')
                 {
-                    if (level >= 3)
+                    if (level == 2)
                     {
                         if (m.Next(0, 3) == 2)
                         {
@@ -146,6 +146,7 @@ namespace QuickMath.SkillWorkers
                 }
                 else
                     return $"{m.Next(1, 10)}³";
+
                 if (num1 < num2)
                 {
                     double temp = num1;
