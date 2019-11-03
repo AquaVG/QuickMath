@@ -23,6 +23,7 @@ namespace QuickMath
             Languages.Clear();
             Languages.Add(new CultureInfo("en-US")); //Нейтральная культура для этого проекта
             Languages.Add(new CultureInfo("ru-RU"));
+            Languages.Add(new CultureInfo("uk-UA"));
 
             Language = QuickMath.Properties.Settings.Default.DefaultLanguage;
         }
@@ -82,10 +83,21 @@ namespace QuickMath
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+#if DEBUG
+            if (File.Exists("user.json"))
+                new MainWindow().Show();
+            else
+                new RegistWindow().Show();
+#elif DW
+            new RegistWindow().Show();
+#else
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\QuickMath\user.json"))
                 new MainWindow().Show();
             else
                 new RegistWindow().Show();
+#endif
+
+
         }
     }
 }

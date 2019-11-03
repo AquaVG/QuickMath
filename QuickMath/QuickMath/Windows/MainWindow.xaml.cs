@@ -33,7 +33,8 @@ namespace QuickMath
             InitializeComponent();
             Minutes = 3;
             Seconds = 0;
-#if DEBUG
+#if DEBUG || DW
+            userFilePath = "user.json";
             Debug.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\QuickMath\user.json");
             Minutes = 0;
             Seconds = 10;

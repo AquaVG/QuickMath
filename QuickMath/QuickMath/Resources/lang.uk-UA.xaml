@@ -21,6 +21,6 @@
     <v:String x:Key="reg_lang">Мова:</v:String>
     <v:String x:Key="reg_name">Ваше імя:</v:String>
     <v:String x:Key="reg_math">Рівень математики:</v:String>
-    <v:String x:Key="reg_memory">Рівень пам'яти:</v:String>
+    <v:String x:Key="reg_memory">Рівень пам'яті:</v:String>
     <v:String x:Key="settings_header">Налаштування</v:String>
 </ResourceDictionary>

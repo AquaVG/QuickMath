@@ -14,7 +14,9 @@ namespace QuickMath
     /// </summary>
     public partial class RegistWindow : Window
     {
-        
+        CultureInfo eng = new CultureInfo("en-US");
+        CultureInfo rus = new CultureInfo("ru-RU");
+        CultureInfo ukr = new CultureInfo("uk-UA");
         public RegistWindow()
         {
             InitializeComponent();
@@ -24,16 +26,38 @@ namespace QuickMath
         }
         private void ComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            App.Language = new CultureInfo((sender as ComboBox).SelectedIndex == 0 ? "en-US" : "ru-RU");
+            switch ((sender as ComboBox).SelectedIndex)
+            {
+                case 0:
+                    App.Language = eng;
+                    break;
+                case 1:
+                    App.Language = rus;
+                    break;
+                case 2:
+                    App.Language = ukr;
+                    break;
+                default:
+                    MessageBox.Show("Couldn\'t find localization file.", "Error");
+                    break;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+#if RELEASE
             User user = new User(Name_TextBox.Text, new PracticeTypeInfo(Math_IntegerUpDown.Value ?? 1), new PracticeTypeInfo(Memory_IntegerUpDown.Value ?? 1));
             File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+@"\QuickMath\user.json", JsonConvert.SerializeObject(user, Formatting.Indented));
             Properties.Settings.Default.Save();
             new MainWindow().Show();
             Close();
+#else
+            User user = new User(Name_TextBox.Text, new PracticeTypeInfo(Math_IntegerUpDown.Value ?? 1), new PracticeTypeInfo(Memory_IntegerUpDown.Value ?? 1));
+            File.WriteAllText("user.json", JsonConvert.SerializeObject(user, Formatting.Indented));
+            Properties.Settings.Default.Save();
+            new MainWindow().Show();
+            Close();
+#endif
         }
 
         private void Name_TextBox_TextChanged(object sender, TextChangedEventArgs e)

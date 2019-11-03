@@ -114,6 +114,7 @@
                       Margin="15">
                 <ComboBoxItem>English</ComboBoxItem>
                 <ComboBoxItem>Русский</ComboBoxItem>
+                <ComboBoxItem>Українська</ComboBoxItem>
             </ComboBox>
         </Grid>
         <Grid Grid.Row="5">
